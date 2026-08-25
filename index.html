@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>yamidra - Portafolio de Evidencias</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/15373c54ac.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <nav id="navbar">
+            <div class="logo">Marco<span>Amaya</span></div>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#Acerca de">Acerca de</a></li>
+                <li><a href="Actividades/activities.html">Actividades</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="inicio" class="hero">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Marco Antonio Amaya Saucedo</h1>
+                    <h2>yamidra</h2>
+                    <h3>CNO V Seguridad informatica</h3>
+                    <p>Estudiante de último semestre en ingeniería en telemática, interesado en los aspectos técnicos de ciberseguridad. 
+                        Siempre buscando aprender algo nuevo sobre ello y mejorar mis habilidades.</p>
+                    <ul class="skills">
+                        <li>HTML5</li>
+                        <li>CSS</li>
+                        <li>PHP</li>
+                        <li>C++</li>
+                        <li>JavaScrip</li>
+                        <li>Python</li>
+                    </ul><br>
+                    <div class="social-links">
+                        <a href="https://github.com/yamidra" target="_blank"><i class="fab fa-github"></i></a>
+                    </div>
+                    <a href="#contacto" class="btn">Contactame</a>
+                </div>
+                <div class="hero-image">
+                    <img src="images/image.jpeg" alt="profile image">
+                </div>
+            </div>
+        </section>
+
+        <section id="Acerca de" class="about">
+            <h2 class="section-title">Acerca de</h2>
+            <div class="aboutme">
+                <div class="aboutme-content">
+                <p>Este portafolio documenta y evalúa las evidencias de aprendizaje adquiridas en la materia CNO V: Seguridad Informática, 
+                    impartida en la <a href="https://www.upslp.edu.mx/upslp/" target="_blank">Universidad Politécnica de San Luis Potosí</a>. En él se integran prácticas clave como el análisis de 
+                    vulnerabilidades y la ejecución de pruebas de penetración (ethical hacking), fundamentales para fortalecer mi perfil y 
+                    competencias en el ámbito de la ciberseguridad.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contacto" class="contact">
+            <h2 class="section-title">Contacto</h2>
+            <form class="form-container" id="contactForm" action="https://formsubmit.co/marco.amaya.sauce@gmail.com" method="POST" novalidate>
+
+  <!-- Línea 1: Nombre y Asunto -->
+  <div class="form-row">
+    <div class="form-group">
+      <label for="nombre">Nombre *</label>
+      <input type="text" id="nombre" name="nombre" placeholder="Tu nombre completo" required>
+      <span class="error-message" id="error-nombre"></span>
+    </div>
+
+    <div class="form-group">
+      <label for="asunto">Asunto *</label>
+      <input type="text" id="asunto" name="asunto" placeholder="Motivo del mensaje" required>
+      <span class="error-message" id="error-asunto"></span>
+    </div>
+  </div>
+
+  <!-- Línea 2: Email -->
+  <div class="form-group">
+    <label for="email">Email *</label>
+    <input type="email" id="email" name="email" placeholder="ejemplo@correo.com" required>
+    <span class="error-message" id="error-email"></span>
+  </div>
+
+  <!-- Línea 3: Mensaje -->
+  <div class="form-group">
+    <label for="mensaje">Mensaje *</label>
+    <textarea id="mensaje" name="mensaje" rows="5" placeholder="Escribe tu mensaje aquí..." required></textarea>
+    <span class="error-message" id="error-mensaje"></span>
+  </div>
+
+  <button type="submit" class="submit-btn">Enviar Mensaje</button>
+</form>
+        </section>
+
+    </main>
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 Marco Antonio Amaya - Todos los derechos reservados</p>
+            <div class="social-links">
+                        <a href="https://github.com/yamidra" target="_blank"><i class="fab fa-github"></i></a>
+                    </div>
+        </div>
+    </footer>
+    <script src="scrip.js"></script>
+</body>
+</html>

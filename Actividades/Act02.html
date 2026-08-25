@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>yamidra - Actividad 2</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="https://kit.fontawesome.com/15373c54ac.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <nav id="navbar">
+            <div class="logo">Marco<span>Amaya</span></div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="../Actividades/activities.html">Actividades</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="reporte" class="repot">
+            <h1 class="section-title">No presiones Esc... Todavía</h1>
+            <div class="rep">
+                <div class=" rep-content">
+                    <h2>Introducción</h2>
+                    <p>Los registradores de pulsaciones son herramientas que registran lo que escribe una persona en un dispositivo. Aunque haya usos legítimos y legales para estos registradores de pulsaciones, muchos de sus usos son maliciosos. En un ataque con un registrador de pulsaciones, el software de registro de pulsaciones registra cada tecla pulsada en el teclado del dispositivo de la víctima y envía la información al ciberdelincuente. <sub>1</sub></p>
+                    <h2>Objetivos del Informe</h2>
+                    <p>Objetivo General: Investigar o estructurar librerías y funciones que permitan a Python el uso de fecha y hora para llevar un registro de eventos, el cual persista después de ejecutar el programa con un formato adecuado.
+Objetivos específicos:
+	Dar formato al registro de eventos con fecha y hora y secuencia
+	Persistencia de los datos. Los datos se guardarán em un archivo local</p>
+                    <h2>Desarrollo</h2>
+                    <p>El programa usa Event hooks. Un Hook es un mecanismo mediante el cual una aplicación intercepta mensajes, eventos o llamadas a funciones de la API antes de que lleguen a su destino original. <sub>2</sub></p>
+<p>Callbacks definen que hacer cuando eso ocurre.</p>
+<p>Registro de datos con formato de cadena que incluye fecha y hora. Los eventos se deben guardar asegurando la estructura deseada</p>
+<p>Se declaran variables globales las cuales nos ayudaran para guardar el archivo y la secuencia del registro, se capturan eventos mediante la librería pynput, se procesan los datos en una función la cual le dé el formato deseado y finalmente la función que guarde los datos</p>
+                    <h2>Implementación</h2>
+                    <img src="../images/biblio.png">
+                    <p>Aquí importamos las librerías datatime que nos permitirá trabajar con fechas al momento de hacer nuestro archivo de registro.</p>
+                    <p>También la librería pynput que importa la clase Listener que detecta las pulsaciones en segundo plano Definición de variables globales para nuestro archivo y para la secuencia de numero de evento</p>
+                    <img src="../images/formato.png">
+                    <p>Esta función es la que nos permite darle formato previo al registro. Línea 13 aumenta el contador para la secuencia de nuestro registro, en la línea 15 nos da el formato deseado, en la línea 16 se agrega el número del evento con ceros al principio, en la línea 18 concatena todos los elementos del formato listos para ser utilizados</p>
+                    <img src="../images/guardado.png">
+                    <p>Esta función escribe los valores en nuestro archivo de registro. Línea 23 recibe la cadena lista para ingresar en el archivo, pero antes línea 25 imprime en pantalla el registro actual y por ultimo las line 28 y 29 se encargan de abrir e ingresar los datos a nuestro archivo</p>
+                    <h2>Resultados</h2>
+                    <img src="../images/terminal.png" alt="terminal">
+                    <p>Aquí podemos ver su ejecución en la terminal de Windows la cual nos muestra las teclas pulsadas en el formato deseado antes de ingresarlas al archivo</p>
+                    <img src="../images/reg.png">
+                    <p>Aquí el registro obtenido en el archivo de texto</p>
+                    <h2>Conclusiones</h2>
+                    <p>Los registradores de pulsaciones, generalmente llamados keyloggers, constituyen un tipo de spyware que permite a personal no autorizado rastrear las acciones realizadas en el teclado. De esta manera, capturan en segundo plano información crítica como nombres de usuario, contraseñas o el contenido de documentos en redacción. A través de esta investigación me di cuenta que, el código no es realmente difícil de implementar, la limitación de este código es como un atacante lo ejecuta de forma imperceptible para el usuario y obtener los registros sin necesidad de acceso físico a la computadora objetivo</p>
+                    <h2>Referencias</h2>
+                    <p><sub>1</sub><a href="https://www.crowdstrike.com/es-es/cybersecurity-101/cyberattacks/keylogger/" target="_blank">Registradores de pulsaciones: Cómo funcionan y cómo detectarlos | CrowdStrike</a></p>
+                    <p><sub>2</sub><a href="https://attack.mitre.org/techniques/T1056/001/" target="_blank">Input Capture: Keylogging, Sub-technique T1056.001 - Enterprise | MITRE ATT&CK®</a></p>
+                    <p><a href="../Documentos/No presiones Esc.pdf" target="_blank">Descargar reporte pdf</a></p>
+
+                </div>
+            </div>
+        </section>
+    </main>
+     <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 Marco Antonio Amaya - UPSL - Todos los derechos reservados</p>
+            <div class="footer-links">
+                        <a href="https://github.com/yamidra" target="_blank"><i class="fab fa-github"></i></a>
+                    </div>
+        </div>
+    </footer>
+</body>
+</html>
