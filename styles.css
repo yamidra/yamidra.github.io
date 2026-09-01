@@ -31,11 +31,11 @@ a {
     text-decoration: none;
     color: inherit;
 }
-
+/*
 ul {
     list-style: none;
 }
-
+*/
 img {
     max-width: 100%;
     height: auto;
@@ -75,6 +75,7 @@ header {
 .nav-links {
     display: flex;
     gap: 2rem;
+    list-style: none;
 }
 
 .nav-links a {
@@ -194,6 +195,7 @@ section {
     flex-wrap: wrap;
     gap: .5rem;
     margin-top: .8rem;
+    list-style: none;
 }
 
 .skills li {
@@ -377,6 +379,10 @@ section {
     margin-bottom: 1.5rem;
     color: var(--gray-text);
     font-size: 1.1rem;
+}
+
+.repo {
+    color: var(--gray-text);
 }
 
 .form-container {
