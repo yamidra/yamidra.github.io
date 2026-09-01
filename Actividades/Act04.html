@@ -31,16 +31,19 @@ ficticia para comprender el funcionamiento de una técnica de captura de
 información y reconocer los elementos que permiten identificar un intento de 
 phishing.</p>
 <h2>Objetivos específicos</h2>
-• Configurar un escenario básico de ingeniería social utilizando Social-Engineer 
-Toolkit (SET).
-• Implementar una página web ficticia mediante el módulo Credential Harvester.
-• Analizar el proceso mediante el cual la información introducida en un formulario 
-web es transmitida y registrada por un servidor.
-• Identificar indicadores técnicos y visuales que permitan reconocer una página 
-potencialmente fraudulenta.
-• Proponer controles de seguridad orientados a prevenir o reducir el impacto de 
-ataques de phishing.
-
+<p>
+<ul class="repo">
+<li>Configurar un escenario básico de ingeniería social utilizando Social-Engineer 
+Toolkit (SET).</li>
+<li>Implementar una página web ficticia mediante el módulo Credential Harvester.</li>
+<li>Analizar el proceso mediante el cual la información introducida en un formulario 
+web es transmitida y registrada por un servidor.</li>
+<li>Identificar indicadores técnicos y visuales que permitan reconocer una página 
+potencialmente fraudulenta.</li>
+<li>Proponer controles de seguridad orientados a prevenir o reducir el impacto de 
+ataques de phishing.</li>
+</ul>
+</p>
 <h1>Descripción del escenario</h1>
 <p>El área de seguridad informática de una organización ha recibido varios reportes 
 de
@@ -50,82 +53,82 @@ actualización de sus credenciales.
 El mensaje contiene un enlace que dirige a un portal aparentemente institucional.
 La página incluye logotipo, campos de usuario y contraseña y un mensaje 
 indicando: “Su sesión ha expirado. Inicie sesión nuevamente para continuar.”
-A primera vista, nada parece fuera de lo común. Sin embargo, el portal no 
-pertenece a la organización.</p>
+A primera vista, nada parece fuera de lo común. Sin embargo, el portal <b>no 
+pertenece a la organización.</b></p>
 
 <h1>Configuración de laboratorio</h1>
 <p>Se usa la maquina virtual del sistema Kali Linux para hacer uso de la herramienta 
-Social-Engineer Toolkit (SET).
- 
-Se crea una página web con el nombre Index.html la cual simulará un sistema 
+Social-Engineer Toolkit (SET).</p>
+ <img src="../images/SET.png" alt="SET">
+<p>Se crea una página web con el nombre Index.html la cual simulará un sistema 
 institucional de autenticación con los siguientes elementos: nombre del sistema, 
 campo de usuario, campo de contraseña, botón de ingreso, mensaje relacionado 
 con la expiración de una sesión.</p>
- 
-<h1>Implementación<h1>
+ <img src="../images/index.png" alt="index">
+<h1>Implementación</h1>
 
 <p>En Kali Linux nos dirigimos al menú principal y en el apartado 03 – Initial Access 
 encontraremos el acceso a setoolkit o también podemos buscarlo con este nombre 
 en la barra de búsqueda y lo ejecutamos.</p>
- 
-<p>Se nos desplegara la siguiente en pantalla e ingresaremos el numero 1 Social-
-Engineering Attacks.</p>
- 
-
-
-<p>Ahora ingresaremos a la opción numero 2 Webside Attack Vectors.</p>
- 
-<p>Ahora ingresaremos al modulo 3 Credential Harvester Attack Method.</p>
- 
+ <img src="../images/kali1.png" alt="kali1">
+<p>Se nos desplegara la siguiente en pantalla e ingresaremos el numero <b>1 Social-
+Engineering Attacks.</b></p>
+ <img src="../images/kali2.png" alt="kali2">
+<p>Ahora ingresaremos a la opción numero <b>2 Webside Attack Vectors.</b></p>
+ <img src="../images/kali3.png" alt="kali3">
+<p>Ahora ingresaremos al modulo <b>3 Credential Harvester Attack Method.</b></p>
+ <img src="../images/kali4.png" alt="kali4">
 <p>En este menú nos muestra 3 opciones de como podemos usar esta herramienta 
 que es usando sitios web predefinido, clonando la página de un sitio y en este 
 caso tenemos ya una página diseñada específicamente para la prueba de 
-laboratorio escogeremos la opción 3 Custom Import.</p>
- 
+laboratorio escogeremos la opción <b>3 Custom Import.</b></p>
+ <img src="../images/kali5.png" alt="kali5">
 
 <p>Al momento de ingresar la opción anterior se levanta un servidor web local que 
 nos servirá para este entorno controlado y nos dará la dirección IP del servidor 
 que pertenece a máquina virtual Kali Linux.</p>
- 
+ <img src="../images/kali6.png" alt="kali6">
 <p>Al presionar enter nos pedirá la ruta dentro de nuestro equipo de la pagina web 
 diseñada para este laboratorio se encuentra en el escritorio.</p>
- 
+ <img src="../images/kali7.png" alt="kali7">
 <p>Después nos pedirá la dirección real del sitio web para que después de dar 
 nuestros datos de acceso nos llevara a este sitio y evitar sospecha, sin embargo, 
 como esto es ficticio ponemos la web de Google.</p>
- 
+ <img src="../images/kali8.png" alt="kali8">
 <p>Finalizando esto el programa se pondrá en espera de los datos sean ingresados.</p>
- 
-
+ <img src="../images/kali8.5.png" alt="kali8.5">
 <p>Ingresamos a nuestro navegador e ingresamos a la dirección de servidor local 
 localhost y nos desplegara la pagina web que hemos diseñado indicando que 
 nuestra sesión expiro por lo cual debemos de ingresar nuestros datos</p>
- 
+ <img src="../images/kali9.png" alt="kali9">
 <p>Después de ingresar los datos y dar clic en el botón correspondiente nos llevara al 
 sitio configurado en pasos anteriores en este caso la página de Google.
 Una ves enviado el formulario si regresamos a la terminal donde estábamos 
 ejecutando nuestro modulo aparecerán las credenciales obtenidas en este caso el 
-nombre de usuario enrique y la contraseña P4l0m4537.</p>
- 
+nombre de usuario <b>enrique</b> y la contraseña <b>P4l0m4537.</b></p>
+<img src="../images/kali11.png" alt="kali11">
 <p>Al finalizar nuestro modulo nos creara un reporte xml con los datos obtenidos en la 
-siguiente ruta /root/.set/reports/.</p>
- 
-
-
-
+siguiente ruta <b>/root/.set/reports/.</b></p>
+ <img src="../images/kali12.png" alt="kali12">
 <h1>Controles de seguridad propuestos</h1>
+<p>
 <h2>Personales</h2>
-<p>*	No abrir nunca archivos adjuntos de remitentes desconocidos ni hacer clic 
-en enlaces de fuentes sospechosas.
-*	Utilizar un navegador y software actualizados.
-*	No contestar nunca al spam.
-*	Evitar el uso de conexiones Wi-Fi públicas o redes inseguras.
+    <ul class="repo">
+    <li>No abrir nunca archivos adjuntos de remitentes desconocidos ni hacer clic 
+en enlaces de fuentes sospechosas.</li>
+<li>Utilizar un navegador y software actualizados.</li>
+<li>No contestar nunca al spam.</li>
+<li>Evitar el uso de conexiones Wi-Fi públicas o redes inseguras.</li>
+</ul>
 <h2>Organizacionales</h2>
-*	Llevar a cabo sesiones de formación periódicas y exhaustivas sobre 
-seguridad.
-*	Activar y exigir la autenticación multifactor (MFA).
-*	Asignar permisos adecuados a todos los usuarios y dispositivos.</p>
-<h1>Conclusión<h1>
+<ul class="repo">
+<li>Llevar a cabo sesiones de formación periódicas y exhaustivas sobre 
+seguridad.</li>
+<li>Activar y exigir la autenticación multifactor (MFA).</li>
+<li>Asignar permisos adecuados a todos los usuarios y dispositivos.</li>
+</ul>
+</p>
+<h1>Conclusión</h1>
 <p>Este tipo de ataque combinado con el descuido de los usuarios ya sea comunes o 
 de empresas, ya sea por costumbre o desconocimiento, no se tiene el criterio para 
 inspeccionar los sitios web de manera que nos demos cuenta que este es legítimo, 
@@ -135,16 +138,16 @@ información vital para el usuario o cuentas bancarias sin embargo implementando
 estas medidas propuestas para evitarlo mejora nuestra seguridad de manera 
 significativa.</p>
 
-                    
-                    <p><a href="../Documentos/Una página demasiado convincente.pdf" target="_blank">Descargar reporte pdf</a></p>
-
+                    <div class="activity-links">
+                    <a href="../Documentos/Una página demasiado convincente.pdf" target="_blank"><i class="fas fa-link"></i>PDF</a>
+                        </div>
                 </div>
             </div>
         </section>
     </main>
      <footer>
         <div class="footer-content">
-            <p>&copy; 2026 Marco Antonio Amaya - UPSL - Todos los derechos reservados</p>
+            <p>&copy; 2026 Marco Antonio Amaya - UPSLP - Todos los derechos reservados</p>
             <div class="footer-links">
                         <a href="https://github.com/yamidra" target="_blank"><i class="fab fa-github"></i></a>
                     </div>
