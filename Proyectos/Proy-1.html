@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>yamidra - Proyecto 1</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="https://kit.fontawesome.com/15373c54ac.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <nav id="navbar">
+            <div class="logo">Marco<span>Amaya</span></div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="../Actividades/activities.html">Actividades</a></li>
+                <li><a href="#">Proyectos</a></li>
+                <li><a href="#">ROAD TO HALL OF FAME</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="reporte" class="repot">
+            <h1 class="section-title">De la teoría a la práctica: walkthrough en acción</h1>
+            <div class="rep">
+                <div class=" rep-content">
+                     <p style="text-align: center;"><iframe width="560" height="315" src="https://www.youtube.com/embed/qrZyVqJYug0?si=tc0NTF8uouIV2InG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
+                    <h1>Objetivo general:</h1>
+<p>Demostrar la capacidad de aplicar conocimientos teóricos de seguridad informática en un entorno práctico, mediante la realización de un walkthrough detallado y la explicación de las técnicas y metodologías utilizadas para vulnerar una máquina virtual.</p>
+
+<h1>Configurar un entorno de virtualización</h1>
+<p>Para configurar un entorno de virtualización aislado tenemos que configurar los adaptadores red de la maquina vulnerable (Snake oíl) y de la maquina en la cual vamos a hacer las pruebas de Pentesting que en este caso es una maquina con Kali Linux</p>
+<p>En VirtualBox realizaremos el siguiente proceso en cada una de las máquinas virtuales, clic derecho a la maquina a configurar, dar clic al apartado red, del lado derecho encontraremos la opción conectada a, aquí seleccionamos la opción: adaptador solo anfitrión, esta opción nos genera una red interna en la cual solo la maquina Snake oíl y Kali Linux estarían conectadas sin acceso a internet. Una vez realizado este proceso encendemos las maquinas.</p>
+<img src="../images/Vul/v1.png" alt="v1" title="img-01">
+
+
+<h1>Enumerar los servicios y aplicaciones en ejecución</h1>
+<p>En Kali Linux empezamos identificando la dirección Ip de nuestra maquina abriendo la terminal y ejecutando el comando ifconfig.</p>
+<img src="../images/Vul/v2.png" alt="v2" title="img-02">
+<p>Ahora necesitamos encontrar la dirección de la maquina Snake oíl para esto usamos el comando <b>netdiscover</b> este trabaja enviando petición <b>brodcast</b> la cual responden todos los hosts menos el que la envía dentro de una red con su Mac y dirección Ip asociada, en sus opciones tendremos que ingresar la interfaz que estamos usando y el rango de direcciones que estamos buscando de la siguiente forma.</p>
+<p><b>sudo netdiscover -i eth0 -r 192.168.56.00/24</p></b></p>
+<img src="../images/Vul/v3.png" alt="v3" title="img-03">
+<p>Aquí podemos ver tres direcciones Ip descartando la primera que pertenece al adaptador de red interno de VirtualBox y la segunda al servidor DHCP de VirtualBox. Descubrimos que la dirección: <b>192.168.56.103</b> pertenece a la maquina Snake oíl.</p>
+
+<p>Una vez que tenemos la dirección tendremos que enumerar los servicios activos sobre esta Ip para eso usamos el comando <b>nmap</b> que nos ayudara escaneando todos los puertos abiertos, así como el servicio y la versión de este de la siguiente manera.</p>
+<p><b>sudo nmap -p- -sV 192.168.56.103</b></p>
+<img src="../images/Vul/v4.png" alt="v4" title="img-04">
+<p>Al analizar la información obtenida podemos ver que está abierto el servicio <b>shh</b> y los puertos <b>80</b> y <b>8080</b> los cuales me indican que se está ejecutando un <b>servidor web nginx.</b></p> 
+<h1>Vulnerabilidades conocidas asociadas con los servicios</h1>
+<p>Al ingresar al servidor podemos ver páginas web simples sin protección https lo cual nos permitirá ver las peticiones y respuestas del servidor web ya que no están encriptadas</p>
+<img src="../images/Vul/v5.png" alt="v5" title="img-05"><img src="../images/Vul/v6.png" alt="v6" title="img-06">
+
+
+<h1>Seleccionar y adaptar los exploids</h1>
+<p>Haremos uso de la  de la herramienta <b>dirb</b> la cual escanea directorios ocultos dentro del servidor comparando sus nombres con una lista directorios comunes en un servidor web de la siguiente manera dirb</p> 
+<p><b>http://192.168.56.103</b></p>
+<img src="../images/Vul/v7.png" alt="v7" title="img-07">
+<p>Al ejecutar el escaneo en el puerto <b>80</b> no arroja ningún directorio por lo cual este puerto queda descartado ejecutamos un escaneo por el puerto <b>8080</b> de la siguiente manera</p>
+<p><b>http://192.168.56.103:8080</b></p>
+<img src="../images/Vul/v8.png" alt="v8" title="img-08">
+
+<p>Gracias a esta Herramienta logramos encontrar directorios con nombres interesantes como <b>login</b>, <b>registration</b>, <b>run</b>, <b>secret</b>, <b>test</b>, <b>users</b>.</p>
+
+
+<p>Usamos esta información para nuevamente navegar por estos directorios encontrándonos con respuestas propias de un sitio web en construcción y con funcionalidades de api por lo cual podremos interactuar con esta.</p>
+<img src="../images/Vul/v9.png" alt="v9" title="img-09">
+<p>Ya que no se esta usando el protocolo https, necesitaremos interceptar, analizar y modificar el tráfico entre un navegador y un servidor para detectar vulnerabilidades en esta aplicación web, por esto usaremos <b>Burp Suite</b>.</p>
+<p>Analizaremos las peticiones y respuesta de cada sección gracias al uso del <b>Proxy</b> de <b>Burb Suite</b>, empezaremos por <b>secret</b> ya que por su nombre podría contener algo de suma importancia.</p>
+<img src="../images/Vul/v13.png" alt="v13" title="img-13">
+<p>El respuesta a esta petición como podemos ver en la linea 4 <b>Content-Type: application/json</b> nos indica la forma en que se esta interpretando los datos, por lo cual si queremos interactuar con ella tendremos que darle datos en este mismo formato aquí el mensaje nos arroja un Error de Servidor interno, este mensaje nos puede indicar que algo anda mal o que necesita algún dato para que funcione correctamente como no lo sabemos lo dejaremos por el momento.</p>
+
+
+<p>La siguiente sección de interés es la de <b>users</b> ya que puede contener el nombre de usuario y contraseña del administrador</p>
+<img src="../images/Vul/v14.png" alt="v14" title="img-14">
+<p>La respuesta de esta petición en el formato antes mencionado nos deja ver información relevante como un nombre de usuario <b>“patrick”</b> y una contraseña que al parecer esta cifrada.</p>
+<p>Ya que tenemos un nombre de usuario podríamos interactuar con la sección <b>login</b>.</p>
+ <img src="../images/Vul/v10.png" alt="v10" title="img-10">
+
+
+
+<p><b>Burp Suite</b> nos permite modificar las peticiones enviando el código de esta a la sección <b>Repeater</b> por lo cual enviaremos cada una de estas. La repuesta a esta peticion nos esta enviando el mensaje: El método no esta permitido para la URL solicitada.</p>
+<img src="../images/Vul/v15.png" alt="v15" title="img-15">
+<p>Cambiamos el método a <b>POST</b> dando clic derecho sobre el contenido de la petición, clic en la opción <b>Change request method</b>, clic a enviar, y ahora podemos ver en la respuesta el mensaje que necesitamos un nombre de usuario por lo cual probamos con el que conocemos <b>“patrick”</b>.</p>
+<img src="../images/Vul/v16.png" alt="v16" title="img-16">
+
+
+
+<p>Damos el formato adecuado a nuestra petición agregando la linea 4 <b>Content-Type: application/json</b> de la respuesta al final de la petición abrimos y cerramos llaves y copiamos el formato del response indicando el nombre de usuario: <b>“username”:“patrick”</b>, la aplicación nos responde que el campo de contraseña no puede ir en blanco.</p>
+<img src="../images/Vul/v17.png" alt="v17" title="img-17">
+<p>Ingresamos un valor de contraseña, nuevamente en el formato que esta solicitando contraseña: <b>“password”:“patrick”</b>, podemos ver el comportamiento de la api en busca de alguna vulnerabilidad, sin embargo solo obtenemos el mensaje que las credenciales no son correctas.</p>
+<p>Ya que probamos que el usuario <b>“patrick”</b> que encontramos en la sección users hasta hora no sirve de mucho, probemos la sección <b>registration</b> la cual nos podría ayudar a crear un usuario.</p>
+<img src="../images/Vul/v11.png" alt="v11">
+
+
+
+<p>La respuesta a esta petición nos está enviando el mensaje: Error en el método.</p>
+<img src="../images/Vul/v18.png" alt="v18" title="img-18">
+<p>Al cambiar de método ahora nos pide al igual que el login un nombre de usuario y por lo tanto una contraseña y le daremos el formato solicitado. <b>“username”:“admin”,“password”:“admin”</b>.</p>
+<img src="../images/Vul/v19.png" alt="v19" title="img-19"><img src="../images/Vul/v20.png" alt="v20" title="img-20">
+<p>Al enviar este petición que el proceso esta hecho sin pedir un tipo de usuario o permiso para crearlo y nos envía un <b>access_token</b> el cuales es <b>JWT (JSON Web Tokens)</b> este es un formato estandarizado donde se envía información del usuario como parte de autentificación y manejo de sesiones este se compone de 3 secciones el <b>header</b> que es la parte seleccionada de la img-19 nos da información que es un <b>JWT</b> que se encripto en HS256. El <b>payload</b> que es la parte de la img-20 la cual nos da algunos datos del usuario sin embargo ninguno de estos datos incluye alguna información de relevancia y por ultimo una <b>firma criptográfica</b> la cual se podría descifrar para firmar nuestros propios <b>JWT</b> pero analizando las paginas del servidor web no interactúan con <b>JWT</b> externos solo da este como una identificación de sesión o Cookie que nos puede servir mas adelante.</p>
+<p>Partiendo de esta información podríamos verificar si el apartado <b>secret</b> requiere de un identificador de sesión.</p>
+<p><b>Burp Suite</b> tiene la opción de agregar <b>Cookies</b> de la siguiente forma.</p>
+<img src="../images/Vul/v21.png" alt="v21" title="img-21"><img src="../images/Vul/v22.png" alt="v22" title="img-22">
+<p>Buscamos del lado derecho el apartado <b>Request cookies</b> le damos en <b>Add</b> o símbolo <b>+</b> nos pedirá un nombre usaremos el valor <b>"acces_token_cookie"</b> y su valor introducimos la cadena de caracteres entre comillas y damos al botón Add estos datos son los que nos muestra al momento de hacer login con el usuario creado. img-21</p>
+<p>Como se observa en la img-22 en la petición ya esta nuestro cookie agregado solo nos resta dar clic en enviar</p>
+<img src="../images/Vul/v23.png" alt="v23" title="img-23">
+<p>Nos podemos dar cuenta que el servidor no valida la información del usuario solo utiliza este token como llave para mostrar el contenido, por lo cual revela información que puede ser vital en este caso una <b>secret_key=commandexecutionissecret</b>.</p>
+
+
+
+<p>Como podemos ver la contraseña por si misma indica <b>execution</b> por lo cual podría tener algo que ver con el apartado <b>run</b>.</p>
+<img src="../images/Vul/v12.png" alt="v12" title="img-12"><img src="../images/Vul/v24.png" alt="v24" title="img-24">
+
+<p>Al analizar este nos indica que el método no esta permitido img-12 por lo cual lo cambiamos img-24, este responde que falta el parámetro <b>url</b> por lo cual le ingresaremos la dirección loopback <b>127.0.0.1</b> ya que queremos ver si se puede conectar consigo misma y el puerto <b>8080</b> que es por el cual estamos trabajando de la siguiente manera <b>“url”:“127.0.0.1:8080”</b> img-25</p>
+<img src="../images/Vul/v25.png" alt="v25" title="img-25"><img src="../images/Vul/v26.png" alt="v26" title="img-26">
+
+
+
+<p>El servidor responde que necesita nuestra clave secreta la cual al parecer es la que logramos encontrar en paso anterior, ingresamos el valor con el formato <b>“secret_key”=“commandexecutionissecret”</b> img-26 al analizar los datos del response nos damos cuenta que esta ejecutando el comando <b>curl</b> por lo cual esta pagina nos permite ejecutar comandos en la maquina y mostrarlos por un mensaje de la aplicacion</p>
+<img src="../images/Vul/v27.png" alt="v27" title="img-27">
+
+<p>Cortamos el anterior comando usando una opción valida <b>--help</b> seguida de un pipe <b>|</b>. Después de esto damos el comando <b>ls</b> y agregamos “<b>;</b>” esto nos muestra los archivos que estan en la ruta actual, encontramos la estructura de una aplicación <b>Flask python</b> por lo cual ingresamos al archivo <b>app.py</b>. Ya que es el archivo de configuración estándar de estas aplicaciones y al actuar como punto de entrada puede tener información de interés.</p>
+<img src="../images/Vul/v28.png" alt="v28" title="img-28">
+<p>Usando el comando <b>cat app.py;</b> se despliega la información y dentro de esta logramos encontrar 2 claves <b>SECRET_KEY=snakeoilisnotgoodforcorporations</b> y <b>SECRET_KEY=NOreasonableDOUBTthisPASSWORDisGOOD</b></p>
+<p>Una vez con estos datos en mano podemos probar estas credenciales en <b>ssh</b></p>
+<img src="../images/Vul/v29.png" alt="v29" title="img-29">
+<p>Usando la contraseña <b>“NOreasonableDOUBTthisPASSWORDisGOOD”</b> y el usuario <b>“patrick”</b> obtenemos acceso local en la maquina snake oil</p>
+<img src="../images/Vul/v30.png" alt="v30" title="img-30">
+<p>Ya que estamos dentro de la maquina solo resta tener acceso a <b>“root”</b> por lo cual ejecutamos el comando <b>sudo su</b> el usuario cambia a root por lo cual tenemos control de la maquina.</p>
+<h1>Vulnerabilidades encontradas después del pentesting</h1>
+<p>
+    <ul class="repo">
+<li>La página no usa https por lo cual las peticiones y repuestas pudieron ser observadas y manipuladas.</li>
+<li>Usar nombres comunes para directorios web permite identificar que hace cada sección.</li>
+<li>Manejo inapropiado de errores estos nos dan información de lo que necesita para que el api nos responda, aunque el usuario no sea autorizado.</li>
+<li>Creación de usuarios no establece ningún control en lo que puede y no puede hacer un usuario.</li>
+<li>Acceso a contraseñas en el servidor web estas claves no deberían estar dentro de los archivos del sitio web.</li>
+<li>Acceso a contraseñas solo con un token de sesión sin validar su uso o el usuario que la creo.</li>
+<li>Permitir correr comandos del sistema y mostrar su ejecución dentro del sitio web.</li>
+<li>Reutilización de credenciales podemos encontrar credenciales de usuario y contraseñas redundantes que nos permitieron tomar acceso al sistema.</li>
+    </ul>
+</p>
+
+<h1>Conclusiones</h1>
+<p>Las pruebas de pentesting son primordiales para la puesta en servicio de un sitio web seguro, mitigando vulnerabilidades en las aplicaciones de desarrollo, la organización de nuestras credenciales y el tipo de acceso que le permitimos al usuario final y a cualquier usuario que de manera mal intencionada quiera hacerse de información relevante o apropiarse de nuestro sistema.</p>
+
+
+                    <div class="activity-links">
+                    <a href="../Documentos/Projecto-Parc-1.pdf" target="_blank"><i class="fas fa-link"></i>PDF</a>
+                        </div>
+                </div>
+            </div>
+        </section>
+    </main>
+     <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 Marco Antonio Amaya - UPSLP - Todos los derechos reservados</p>
+            <div class="footer-links">
+                        <a href="https://github.com/yamidra" target="_blank"><i class="fab fa-github"></i></a>
+                    </div>
+        </div>
+    </footer>
+</body>
+</html>
