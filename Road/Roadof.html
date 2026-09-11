@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>yamidra - Road to Hall of Fame</title>
+    <link rel="stylesheet" href="stylesr.css">
+    <script src="https://kit.fontawesome.com/15373c54ac.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <header> 
+        <nav id="navbar">
+            <div class="logo">Marco<span>Amaya</span></div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="../Actividades/activities.html">Actividades</a></li>
+                <li><a href="../Proyectos/Proy-1.html">Proyectos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="reporte" class="repot">
+
+            <h1 class="section-title">ROAD TO HALL OF FAME</h1>
+
+            <!-- Contenedor Principal de la Línea de Tiempo -->
+            <div class="timeline"> 
+
+                <!-- Item 1 (Izquierda) -->
+                <div class="timeline-item left">
+                    <div class="timeline-dot"></div>
+                    <div class="card">
+                        <div class="theme"><h2>File Path Traversal</h2></div>
+                        <h3>Simple case</h3>
+                        <div class="nivel0">APPRENTICE</div>
+                        <h4>Tipo de explotación</h4>
+                        <p>Path Traversal al cargar una imagen del servidor</p>
+                        <h4>Payload</h4>
+                        <div class="payload"><span>../../../etc/passwd</span></div>
+                        <div class="link"><a href="../Documentos/1.pdf" target="_blank"><i class="fas fa-link"></i> Reporte</a></div>
+                    </div>
+                </div>
+
+                <!-- Item 2 (Derecha) -->
+                <div class="timeline-item right">
+                    <div class="timeline-dot"></div>
+                    <div class="card">
+                        <div class="theme"><h2>File Path Traversal</h2></div>
+                        <h3>Traversal sequences blocked with absolute path bypass</h3>
+                        <div class="nivel1">PRACTITIONER</div>
+                        <h4>Tipo de explotación</h4>
+                        <p>La aplicación bloquea path traversal pero trata el nombre de archivo proporcionado como relativo a un directorio de trabajo predeterminado.</p>
+                        <h4>Payload</h4>
+                        <div class="payload"><span>/etc/passwd</span></div>
+                        <div class="link"><a href="../Documentos/2.pdf" target="_blank"><i class="fas fa-link"></i> Reporte</a></div>
+                    </div>
+                </div>
+
+                <!-- Item 3 (Izquierda) -->
+                <div class="timeline-item left">
+                    <div class="timeline-dot"></div>
+                    <div class="card">
+                        <div class="theme"><h2>File Path Traversal</h2></div>
+                        <h3>Traversal sequences stripped non-recursively</h3>
+                        <div class="nivel1">PRACTITIONER</div>
+                        <h4>Tipo de explotación</h4>
+                        <p>La aplicación elimina el payload path traversal de rutas del nombre de archivo proporcionado por el usuario antes de usarlo.</p>
+                        <h4>Payload</h4>
+                        <div class="payload"><span>....//....//....//etc/passwd</span></div>
+                        <div class="link"><a href="../Documentos/3.pdf" target="_blank"><i class="fas fa-link"></i> Reporte</a></div>
+                    </div>
+                </div>
+
+                <!-- Item 4 (Derecha) -->
+                <div class="timeline-item right">
+                    <div class="timeline-dot"></div>
+                    <div class="card">
+                        <div class="theme"><h2>File Path Traversal</h2></div>
+                        <h3>Traversal sequences stripped with superfluous URL-decode</h3>
+                        <div class="nivel1">PRACTITIONER</div>
+                        <h4>Tipo de explotación</h4>
+                        <p>La aplicación bloquea la entrada que contiene payload de path traversal. Luego realiza una decodificación de la URL de entrada antes de usarla.</p>
+                        <h4>Payload</h4>
+                        <div class="payload"><span>..%252f..%252f..%252fetc/passwd</span></div>
+                        <div class="link"><a href="../Documentos/4.pdf" target="_blank"><i class="fas fa-link"></i> Reporte</a></div>
+                    </div>
+                </div>
+
+                <!-- Item 5 (Izquierda) -->
+                <div class="timeline-item left">
+                    <div class="timeline-dot"></div>
+                    <div class="card">
+                        <div class="theme"><h2>File Path Traversal</h2></div>
+                        <h3>Validation of start of path</h3>
+                        <div class="nivel1">PRACTITIONER</div>
+                        <h4>Tipo de explotación</h4>
+                        <p>La aplicación transmite la ruta completa del archivo mediante un parámetro de solicitud y verifica que la ruta proporcionada comience con la carpeta esperada.</p>
+                        <h4>Payload</h4>
+                        <div class="payload"><span>/var/www/images/../../../etc/passwd</span></div>
+                        <div class="link"><a href="../Documentos/5.pdf" target="_blank"><i class="fas fa-link"></i> Reporte</a></div>
+                    </div>
+                </div>
+
+                <!-- Item 6 (Derecha) -->
+                <div class="timeline-item right">
+                    <div class="timeline-dot"></div>
+                    <div class="card">
+                        <div class="theme"><h2>File Path Traversal</h2></div>
+                        <h3>Validation of file extension with null byte bypass</h3>
+                        <div class="nivel1">PRACTITIONER</div>
+                        <h4>Tipo de explotación</h4>
+                        <p>La aplicación valida que el nombre de archivo proporcionado termine con la extensión de archivo esperada.</p>
+                        <h4>Payload</h4>
+                        <div class="payload"><span>../../../etc/passwd%00.jpg</span></div>
+                        <div class="link"><a href="../Documentos/6.pdf" target="_blank"><i class="fas fa-link"></i> Reporte</a></div>
+                    </div>
+                </div>
+
+            </div>
+            
+        </section>
+    </main>
+    
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 Marco Antonio Amaya - Todos los derechos reservados</p>
+            <div class="footer-links">
+                <a href="https://github.com/yamidra" target="_blank"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script de Animación al hacer Scroll -->
+    <script src="script.js"></script>
+</body>
+</html>
