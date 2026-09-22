@@ -383,6 +383,31 @@ section {
 
 .repo {
     color: var(--gray-text);
+    margin: 30px;
+}
+
+.level {
+    color: antiquewhite;
+    display: inline-block;
+    padding: 3px 10px;
+    margin-bottom: 12px;
+    background-color: #70AD47;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.level2 {
+    color: antiquewhite;
+    display: inline-block;
+    padding: 3px 10px;
+    margin-bottom: 12px;
+    background-color: #4CC1FF;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.5px
 }
 
 .form-container {
