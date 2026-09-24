@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>yamidra - Actividad 12</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="https://kit.fontawesome.com/15373c54ac.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <nav id="navbar">
+            <div class="logo">Marco<span>Amaya</span></div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="../Actividades/activities.html">Actividades</a></li>
+                <li><a href="../Proyectos/Proy-1.html">Proyectos</a></li>
+                <li><a href="../Road/Roadof.html">ROAD TO HALL OF FAME</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="reporte" class="repot">
+            <h1 class="section-title">Validation of file extension with null byte bypass</h1>
+            
+            <div class="rep">
+                <div class=" rep-content">
+                    <span class="level2">PRACTITIONER</span>
+                    <h2>Tipo de explotación</h2>
+<p>Path Traversal al cargar una imagen del servidor. La aplicación valida que el nombre de archivo proporcionado termine con la extensión de archivo esperada.</p>
+<h2>Objetivo</h2>
+<p>Encontrar la vulnerabilidad Path Traversal de las rutas en la visualización de imágenes de productos.</p>
+<h2>Explicación técnica de la vulnerabilidad</h2>
+<p>Estas vulnerabilidades permiten a un atacante leer archivos arbitrarios en el servidor que ejecuta una aplicación. Esto podría incluir:
+    <ul class="repo">
+<li>Código y datos de la aplicación.</li>
+<li>Credenciales de sistemas de back-end.</li>
+<li>Archivos sensibles del sistema operativo.</li></ul></p>
+<p>En algunos casos, un atacante podría incluso escribir en archivos arbitrarios en el servidor, lo que les permitiría modificar datos o el comportamiento de la aplicación y, finalmente, tomar el control total del servidor.</p>
+
+
+
+<h2>Procedimiento paso a paso</h2>
+<p> <ol class="repo">
+<li>Abrir <strong>Burb Suite</strong> nos dirigimos a la pestaña Proxy.</li>
+    
+<li>Activamos la opción <strong>Intercept on.</strong></li>
+
+<img src="../images/path/Proxy.png" alt="proxy">
+
+<li>Dar clic en <strong>Open browser</strong> y pegar en este la dirección del laboratorio y presionar la tecla enter.</li>
+<img src="../images/path/browser.png" alt="browser">
+<li>Regresar a <strong>Burb Suite</strong> y dar clic en <strong>Forward</strong> hasta que logremos ver la URL con el request de la imagen.</li>
+
+<li>Dar clic con botón izquierdo al <strong>Request</strong> y dar clic en <strong>Sent to Repeater</strong>.</li>
+<img src="../images/path/Clic.png" alt="clic">
+<li>Dar clic en la pestaña <strong>Repeater</strong>.</li>
+<li>En el apartado <strong>Request</strong> logramos ver <strong>GET /image?filename=xxxx.jpg</strong>. </li>
+<li>Borramos el nombre de la imagen e introducimos el <strong>Payload</strong>: <strong>../../../etc/passwd%00.jpg</strong>.</li>
+
+<li>Dar clic en Send, del lado derecho en <strong>Response</strong> podemos ver el contenido del archivo <strong>passwd</strong>.</li>
+<img src="../images/path/payload6.png" alt="response">
+<li>Con esto logramos resolver el laboratorio. </li>
+<img src="../images/path/lab06solved.png" alt="solve"></ol>
+</p>
+
+<h2>Explicación del payload</h2>
+<p>La aplicación requiere que el nombre del archivo de la petición termine con una extensión configurada, por ejemplo <strong>.jpg</strong> aquí usamos un byte nulo para finalizar correctamente la ruta del archivo antes de la extensión requerida. La aplicación valida esta la extensión sin embargo la petición de archivo omitirá todo lo que esta después del byte nulo <strong>%00</strong> por lo cual cargará el archivo passwd, el payload a utilizar sería el siguiente: <strong>../../../etc/passwd%00.jpg</strong>.</p>
+
+
+
+<h2>Mitigación recomendada</h2>
+<p>La forma más efectiva de prevenir Path Traversal es evitar pasar datos proporcionados por el usuario a las APIs del sistema de archivos por completo. Muchas funciones de la aplicación que hacen esto se pueden reescribir para ofrecer el mismo comportamiento de manera más segura.</p>
+<p>Si no puedes evitar pasar datos del usuario a las APIs del sistema de archivos, recomendamos usar dos capas de defensa para prevenir ataques:
+    <ul class="repo">
+<li>Valida la entrada del usuario antes de procesarla. Idealmente, compara la entrada con una lista blanca de valores permitidos. Si eso no es posible, verifica que la entrada contenga solo contenido permitido, como caracteres alfanuméricos.</li>
+<li>Después de validar la entrada proporcionada, añade la entrada al directorio base y usa una API del sistema de archivos de la plataforma para canonizar la ruta. Verifica que la ruta canonizada comience con el directorio base esperado.</li></ul></p>
+
+                    <div class="activity-links">
+                    <a href="../Documentos/6.pdf" target="_blank"><i class="fas fa-link"></i>PDF</a>
+                        </div>
+                </div>
+            </div>
+        </section>
+    </main>
+     <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 Marco Antonio Amaya - UPSLP - Todos los derechos reservados</p>
+            <div class="footer-links">
+                        <a href="https://github.com/yamidra" target="_blank"><i class="fab fa-github"></i></a>
+                    </div>
+        </div>
+    </footer>
+</body>
+</html>
