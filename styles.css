@@ -410,6 +410,10 @@ section {
     letter-spacing: 0.5px
 }
 
+pdf-iframe {
+  width: 100%; /* para hacerlo responsive */
+ height: 100vh;
+}
 .form-container {
   max-width: 800px;
   margin: 40px auto;
