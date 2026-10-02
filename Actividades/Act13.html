@@ -27,52 +27,83 @@
                     <h1>Resumen Ejecutivo (Executive Summary).</h1>
                     <p>Durante la última semana de septiembre, su servidor Marco Antonio Amaya Saucedo realizó una evaluación de red team de un entorno corporativo orientado a servicios de almacenamiento de la organización. La evaluación simuló un actor de amenaza realista con el objetivo de obtener el acceso no autorizado a los datos almacenados exfiltrar datos sensibles y tomar control total del equipo con el fin de apropiarse de más activos de la empresa.</p>
                     <p>Logre con éxito comprometer completamente los servicios de almacenamiento en 48 horas desde el acceso inicial, obtener el usuario y contraseña de administrador de estos archivos y control total del sistema. La ruta de ataque principal explotó debido a contraseña en texto plano alojada en el servidor web y el uso de nombre de usuario predeterminado. Estos hallazgos indican que un actor de amenaza motivado podría lograr acceso total a datos de la organización y filtración de archivos confidenciales.
-                        <ul class="repo"></ul>
+                        <ul class="repo">
                         <li>Inicio de sesión anónimo</li>
                         <li>Nombre de usuario predeterminado</li>
                         <li>Contraseña en texto Plano</li>
-                        <li>Programas desactualizados</li>
+                        <li>Programas desactualizados</li></ul>
                     </p>
                     <h1>Alcance (scope).</h1>
                     <p>El alcance de este proyecto se limitó a al servidor de archivos proporcionado por la organización para identificar vulnerabilidades que puedan ser explotadas para:
-                        <ul class="repo"></ul>
+                        <ul class="repo">
                         <li>Obtener acceso a archivos almacenado</li>
                         <li>Enumerar servicios.</li>
-                        <li>Obtener acceso privilegiado al servidor</li>
+                        <li>Obtener acceso privilegiado al servidor</li></ul>
                     </p>
                     <h1>Metodología aplicada.</h1>
                     <p>PTES, o Penetration Testing Execution Standard, es un método integral de pruebas de penetración.</p>
                     <p>El PTES fue diseñado por un equipo de profesionales de seguridad de la información y consta de siete secciones principales que cubren todos los aspectos de las pruebas de penetración. El propósito del PTES es tener pautas técnicas para describir lo que las organizaciones deben esperar de una prueba de penetración y guiarlas a lo largo del proceso, comenzando en la etapa previa al compromiso.</p>
                     <p>El PTES tiene como objetivo ser la línea de base para las pruebas de penetración y proporcionar una metodología estandarizada para los profesionales y organizaciones de seguridad. La guía proporciona una variedad de recursos, como las mejores prácticas en cada etapa del proceso de prueba de penetración, de principio a fin. Algunas características clave de PTES son la explotación y la postexplotación. La explotación se refiere al proceso de obtener acceso a un sistema a través de técnicas de penetración, como la ingeniería social y el descifrado de contraseñas. La explotación posterior es cuando los datos se extraen de un sistema comprometido y se mantiene el acceso.</p>
                     <h1>Fases de reconocimiento.</h1>
-                    <p>Se inicia el servidor.</p>
+                    <p>Se inicia el servidor.<img src="../images/Red/r1.png" alt="r1"></p>
                     <p>El servidor no cuenta con interfaz gráfica, sin embargo, nos da información del sistema operativo y propósito de este, solo se puede interactuar con un Usuario y Contraseña validos.</p>
-                    <p>Interactuamos con servicio web instalado.</p>
+                    <p>Interactuamos con servicio web instalado.<img src="../images/Red/r2.png" alt="r2"></p>
                     <p>Este no muestra información relevante.</p>
                     <p>Ya que solo podemos hacer el reconocimiento del servidor interactuando solo con estas 2 opciones pasamos a la siguiente fase.</p>
                     <h1>Enumeración.</h1>
-                    <p></p>
+                    <p>Localizando host objetivo Netdiscover: sudo netdiscover -i eth0 -r 192.168.56.00/24.<img src="../images/Red/r3.png" alt="r3"></p>
+                    <p>Enumeración Nmap: sudo nmap -p- -sV 192.168.56.104.<img src="../images/Red/r4.png" alt="r4"></p>
+                    <p>Nmap agresivo: sudo nmap -A 21 192.168.56.104.<img src="../images/Red/r5.png" alt="r5"><img src="../images/Red/r6.png" alt="r6"><img src="../images/Red/r7.png" alt="r7"></p>
+                    <p>Los resultados muestran los siguientes servicios activos en el servidor.
+                    <ul class="repo">
+                        <li>FTP</li>
+                        <li>Web</li>
+                        <li>Samba</li>
+                    </ul>
+                    </p>
 
                     <h1>Explotación.</h1>
-                    <p>Una vez identificando los servicios se interactúa con los servicios ftp.</p>
+                    <p>Una vez identificando los servicios se interactúa con los servicios ftp.<img src="../images/Red/r8.png" alt="r8"><img src="../images/Red/r9.png" alt="r9"></p>
                     <p>En ambos casos nos pide usuario y contraseña.</p>
-                    <p>Se interactúa con el servicio samba con smbmap el cual nos indica que se esta usando el usuario predeterminado smbuser.</p>
-                    <p>Al interactuar con el servidor web solo nos muestra una pagina sin datos de interés, por medio de nikto  obtenemos un directorio oculto de interés con el archivo readme.txt.</p>
-                    <p>Al visitar la pagina nos muestra una contraseña en texto plano.</p>
-                    <p>En este momento tenemos un nombre de usuario smbuser y la contraseña rootroot1 por lo cual reutilizando estas credenciales accedemos a él FTP.</p>
+                    <p>Se interactúa con el servicio samba con smbmap el cual nos indica que se esta usando el usuario predeterminado smbuser.<img src="../images/Red/r10.png" alt="r10"></p>
+                    <p>Al interactuar con el servidor web solo nos muestra una pagina sin datos de interés, por medio de nikto  obtenemos un directorio oculto de interés con el archivo readme.txt.<img src="../images/Red/r11.png" alt="r11"></p>
+                    <p>Al visitar la pagina nos muestra una contraseña en texto plano.<img src="../images/Red/r12.png" alt="r12"></p>
+                    <p>En este momento tenemos un nombre de usuario smbuser y la contraseña rootroot1 por lo cual reutilizando estas credenciales accedemos a él FTP.<img src="../images/Red/r13.png" alt="r13"></p>
                     <p>Con esto tenemos acceso servidor FTP.</p>
-                    <p>El siguiente paso ya que tenemos acceso al FTP, generamos una llave ssh en nuestra máquina para lograr ingresar a servidor con el mismo usuario que tenemos acceso por FTP.</p>
-                    <p>Se crea un directorio en el FTP de servidor.</p>
-                    <p>Se copia la llave publica de nuestra maquina por medio del servidor FTP a directorio de llaves públicas del servidor.</p>
-                    <p>Por medio de ssh ingreso a la maquina con el usuario smbuser.</p>
+                    <p>El siguiente paso ya que tenemos acceso al FTP, generamos una llave ssh en nuestra máquina para lograr ingresar a servidor con el mismo usuario que tenemos acceso por FTP.<img src="../images/Red/r14.png" alt="r14"></p>
+                    <p>Se crea un directorio en el FTP de servidor.<img src="../images/Red/r15.png" alt="r15"></p>
+                    <p>Se copia la llave publica de nuestra maquina por medio del servidor FTP a directorio de llaves públicas del servidor.<img src="../images/Red/r16.png" alt="r16"></p>
+                    <p>Por medio de ssh ingreso a la maquina con el usuario smbuser.<img src="../images/Red/r17.png" alt="r17"></p>
+
                     <h1>Escalada de privilegios.</h1>
+                    <p>Ya que tenemos acceso a un usuario del sistema del servidor hay que encontrar la forma de ser administrador de este por lo cual investigamos la versión del sistema en busca de vulnerabilidades.<img src="../images/Red/r18.png" alt="r18"></p>
+                    <p>Encontramos DirtyCOW (CVE-2016-5195) es una vulnerabilidad de escalada de privilegios en el kernel de Linux. Permite a un usuario local sin privilegios obtener acceso de escritura a asignaciones de memoria de solo lectura, lo que le permite elevar sus privilegios en el sistema.</p>
+                    <p>DirtyCOW explota una condición de carrera en la forma en que el subsistema de memoria del kernel de Linux maneja la ruptura de "copy-on-write" (COW) de asignaciones de memoria privada de solo lectura.</p>
+                    <p>Descargamos el código en nuestra máquina, ejecutamos un servicio en la carpeta donde tenemos el archivo para poder pasar el código al servidor.<img src="../images/Red/r19.png" alt="r19"></p>
+                    <p>En el servidor descargamos el archivo con el siguiente comando.<img src="../images/Red/r20.png" alt="r20"></p>
+                    <p>Compilamos con el siguiente comando.<img src="../images/Red/r21.png" alt="r21"></p>
+                    <p>Ejecutamos DirtyCOW.<img src="../images/Red/r22.png" alt="r22"></p>
+                    <p>Ahora somos usuario root por lo cual somos administradores del sistema obteniendo el control total de este.<img src="../images/Red/r23.png" alt="r23"></p>
+
                     <h1>Análisis de impacto (modelo CIA).</h1>
                     <h2>Confiabilidad</h2>
+                    <p>Los datos del servidor ya no son secretos ya que un actor de amenaza puede hacerse con ellos y filtrar la información.</p>
                     <h2>Integridad</h2>
+                    <p>La integridad se ve comprometida ya que el actor de amenaza puede alterar estos archivos si solo se encuentran dentro de este servidor.</p>
                     <h2>Disponibilidad</h2>
+                    <p>Si los archivos solo se encuentran en este servidor y el actor de amenaza se hace de este podría negar el acceso o pedir rescate por todos los datos por lo cual no estarán disponibles para nuestro uso.</p>
                     <h1>Recomendaciones técnicas.</h1>
+                    <p>
+                       <ul class="repo">
+                        <li>Actualización de sistema operativo</li>
+                        <li>Actualización de software (servicios)</li>
+                        <li>Evitar guardar credenciales en texto plano</li>
+                        <li>No usar nombres de usuario predeterminados</li>
+                       </ul> 
+                    </p>
                     <h1>Tabla de hallazgos:</h1>
-                    
+                    <p>
+                    <img src="../images/Red/tabla.png" alt="tabla"></p>
 
                     <div class="activity-links">
                     <a href="../Documentos/Red team report.pdf" target="_blank"><i class="fas fa-link"></i>PDF</a>
