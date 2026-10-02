@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>yamidra - Actividad 2</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="https://kit.fontawesome.com/15373c54ac.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <nav id="navbar">
+            <div class="logo">Marco<span>Amaya</span></div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="../Actividades/activities.html">Actividades</a></li>
+                <li><a href="../Proyectos/Proy-1.html">Proyectos</a></li>
+                <li><a href="../Road/Roadof.html">ROAD TO HALL OF FAME</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="reporte" class="repot">
+            <h1 class="section-title">Red team report: Pentesting de My File Server 1</h1>
+            <div class="rep">
+                <div class=" rep-content">
+                    <h1>Resumen Ejecutivo (Executive Summary).</h1>
+                    <p>Durante la última semana de septiembre, su servidor Marco Antonio Amaya Saucedo realizó una evaluación de red team de un entorno corporativo orientado a servicios de almacenamiento de la organización. La evaluación simuló un actor de amenaza realista con el objetivo de obtener el acceso no autorizado a los datos almacenados exfiltrar datos sensibles y tomar control total del equipo con el fin de apropiarse de más activos de la empresa.</p>
+                    <p>Logre con éxito comprometer completamente los servicios de almacenamiento en 48 horas desde el acceso inicial, obtener el usuario y contraseña de administrador de estos archivos y control total del sistema. La ruta de ataque principal explotó debido a contraseña en texto plano alojada en el servidor web y el uso de nombre de usuario predeterminado. Estos hallazgos indican que un actor de amenaza motivado podría lograr acceso total a datos de la organización y filtración de archivos confidenciales.
+                        <ul class="repo"></ul>
+                        <li>Inicio de sesión anónimo</li>
+                        <li>Nombre de usuario predeterminado</li>
+                        <li>Contraseña en texto Plano</li>
+                        <li>Programas desactualizados</li>
+                    </p>
+                    <h1>Alcance (scope).</h1>
+                    <p>El alcance de este proyecto se limitó a al servidor de archivos proporcionado por la organización para identificar vulnerabilidades que puedan ser explotadas para:
+                        <ul class="repo"></ul>
+                        <li>Obtener acceso a archivos almacenado</li>
+                        <li>Enumerar servicios.</li>
+                        <li>Obtener acceso privilegiado al servidor</li>
+                    </p>
+                    <h1>Metodología aplicada.</h1>
+                    <p>PTES, o Penetration Testing Execution Standard, es un método integral de pruebas de penetración.</p>
+                    <p>El PTES fue diseñado por un equipo de profesionales de seguridad de la información y consta de siete secciones principales que cubren todos los aspectos de las pruebas de penetración. El propósito del PTES es tener pautas técnicas para describir lo que las organizaciones deben esperar de una prueba de penetración y guiarlas a lo largo del proceso, comenzando en la etapa previa al compromiso.</p>
+                    <p>El PTES tiene como objetivo ser la línea de base para las pruebas de penetración y proporcionar una metodología estandarizada para los profesionales y organizaciones de seguridad. La guía proporciona una variedad de recursos, como las mejores prácticas en cada etapa del proceso de prueba de penetración, de principio a fin. Algunas características clave de PTES son la explotación y la postexplotación. La explotación se refiere al proceso de obtener acceso a un sistema a través de técnicas de penetración, como la ingeniería social y el descifrado de contraseñas. La explotación posterior es cuando los datos se extraen de un sistema comprometido y se mantiene el acceso.</p>
+                    <h1>Fases de reconocimiento.</h1>
+                    <p>Se inicia el servidor.</p>
+                    <p>El servidor no cuenta con interfaz gráfica, sin embargo, nos da información del sistema operativo y propósito de este, solo se puede interactuar con un Usuario y Contraseña validos.</p>
+                    <p>Interactuamos con servicio web instalado.</p>
+                    <p>Este no muestra información relevante.</p>
+                    <p>Ya que solo podemos hacer el reconocimiento del servidor interactuando solo con estas 2 opciones pasamos a la siguiente fase.</p>
+                    <h1>Enumeración.</h1>
+                    <p></p>
+
+                    <h1>Explotación.</h1>
+                    <p>Una vez identificando los servicios se interactúa con los servicios ftp.</p>
+                    <p>En ambos casos nos pide usuario y contraseña.</p>
+                    <p>Se interactúa con el servicio samba con smbmap el cual nos indica que se esta usando el usuario predeterminado smbuser.</p>
+                    <p>Al interactuar con el servidor web solo nos muestra una pagina sin datos de interés, por medio de nikto  obtenemos un directorio oculto de interés con el archivo readme.txt.</p>
+                    <p>Al visitar la pagina nos muestra una contraseña en texto plano.</p>
+                    <p>En este momento tenemos un nombre de usuario smbuser y la contraseña rootroot1 por lo cual reutilizando estas credenciales accedemos a él FTP.</p>
+                    <p>Con esto tenemos acceso servidor FTP.</p>
+                    <p>El siguiente paso ya que tenemos acceso al FTP, generamos una llave ssh en nuestra máquina para lograr ingresar a servidor con el mismo usuario que tenemos acceso por FTP.</p>
+                    <p>Se crea un directorio en el FTP de servidor.</p>
+                    <p>Se copia la llave publica de nuestra maquina por medio del servidor FTP a directorio de llaves públicas del servidor.</p>
+                    <p>Por medio de ssh ingreso a la maquina con el usuario smbuser.</p>
+                    <h1>Escalada de privilegios.</h1>
+                    <h1>Análisis de impacto (modelo CIA).</h1>
+                    <h2>Confiabilidad</h2>
+                    <h2>Integridad</h2>
+                    <h2>Disponibilidad</h2>
+                    <h1>Recomendaciones técnicas.</h1>
+                    <h1>Tabla de hallazgos:</h1>
+                    
+
+                    <div class="activity-links">
+                    <a href="../Documentos/Red team report.pdf" target="_blank"><i class="fas fa-link"></i>PDF</a>
+                        </div>
+                </div>
+            </div>
+        </section>
+    </main>
+     <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 Marco Antonio Amaya - UPSLP - Todos los derechos reservados</p>
+            <div class="footer-links">
+                        <a href="https://github.com/yamidra" target="_blank"><i class="fab fa-github"></i></a>
+                    </div>
+        </div>
+    </footer>
+</body>
+</html>
