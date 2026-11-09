@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>yamidra - Actividad 16</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="https://kit.fontawesome.com/15373c54ac.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <nav id="navbar">
+            <div class="logo">Marco<span>Amaya</span></div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="../Actividades/activities.html">Actividades</a></li>
+                <li><a href="../Proyectos/Proy-1.html">Proyectos</a></li>
+                <li><a href="../Road/Roadof.html">ROAD TO HALL OF FAME</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="reporte" class="repot">
+            <h1 class="section-title">La verdad en los bits: adquisición forense con FTK Imager.</h1>
+            <div class="rep">
+                <div class=" rep-content">
+                    <h2>Parte I. Adquisición de evidencia mediante imagen forense bit a bit.</h2>
+                    <p>El análisis forense digital es un conjunto de técnicas de recopilación y exhaustivo peritaje de datos para entender la naturaleza de un ataque.</p>
+                    <p>El análisis forense digital se define como un conjunto de técnicas de recopilación y exhaustivo peritaje de datos, la cual sin modificación alguna podría
+                    ser utilizada para responder en algún tipo de incidente en un marco legal. Un incidente es un evento en donde las políticas de seguridad de un sistema se ven 
+                    corrompidas, siendo entonces el objetivo entender la naturaleza del ataque.</p>
+                    <p>Usualmente es divido en cinco fases que nos ayudan a mantener un estudio estructurado, facilitando la verificabilidad, la reproducibilidad del análisis.</p>
+                    <p> <ol class="repo">
+                        <li>Adquisición. En esta fase se obtienen copias de la información que se sospecha que puede estar vinculada con algún incidente. De este modo, hay que evitar 
+                        modificar cualquier tipo de dato utilizando siempre copias bit a bit con las herramientas y dispositivos adecuados.</li>
+                        <li>Preservación.</li>
+                        <li>Análisis.</li>
+                        <li>Documentación.</li>
+                        <li>Presentación.</li></ol>
+                    </p>
+                    <p>Asegurando preservar la muestra en estado original y siempre trabajando sobre copias realizadas bit a bit, lograremos ir alineados a las metodologías estandarizadas 
+                    internacionales, las cuales nos darán pie a presentar nuestros resultados con un soporte legal ante alguna Institución que lo requiera.</p>
+                    <p>Como parte del equipo de especialistas en el Laboratorio de Informática Forense, se le ha solicitado la adquisición del material digital para su posterior análisis.</p>
+                    <p><strong>Instrucciones:</strong> Detalle el proceso a través de capturas de pantallas.</p>
+                    <p> <ol class="repo">
+                        <li>FTK Imager es una herramienta forense digital gratuita desarrollada por AccessData, una empresa de software de seguridad. Es una herramienta muy útil en la investigación
+                         forense digital, ya que permite crear imágenes forenses de dispositivos de almacenamiento, como discos duros, dispositivos USB o tarjetas de memoria, entre otros.<br>
+                        Con FTK Imager, los investigadores pueden hacer una copia exacta de un dispositivo de almacenamiento, incluyendo todos los datos, archivos y metadatos almacenados en el dispositivo. Esta imagen forense se puede utilizar para analizar el contenido del dispositivo en un entorno seguro y controlado, sin correr el riesgo de modificar o alterar los datos originales.<br>
+                        Proceda a completar el formulario de descarga para obtener la última versión de FTK, a través del siguiente enlace: <a href="https://www.exterro.com/" target="_blank">https://www.exterro.com/</a><br>
+                        Una vez en la página de inicio, deberá dirigirse al menú superior en el apartado “Products”, después en la sección de “Digital Forensics” haga clic en el enlace “FTK Imager”.<br>
+                        Acceda al formulario de descarga haciendo clic en la leyenda “Download FTK Imager Now”.
+                        </li>
+                        <li>Ejecute como administrador el instalador de nombre: AccessData_FTK_Imager_4.7.1.exe, continúe con el proceso a través de la guía de instalación.</li>
+                        <li>Una vez instalado el sistema, proceda a ejecutar una instancia del mismo. Deberá de observar lo siguiente:<br><img src="../images/Act16/2026-11-03 23_00_19-AccessData FTK Imager 4.3.1.1.png"></li>
+                        <li>Proceda a realizar la adquisición del material digital, para ello deberá introducir una memoria USB a su ordenador la cual fungirá como evidencia, es preciso mencionar que para este proceso es indispensable un bloqueador de escritura, para este fin se omitirá su uso.<br>
+                        A continuación seleccione: “Create Disk Image..” desde el menú contextual de File.<br><img src="../images/Act16/2026-11-03 23_04_08-AccessData FTK Imager 4.3.1.1.png"> <br>
+                        Una vez que observe la pestaña de “Select Source”, asegúrese de seleccionar “Physical Drive” y haga clic en siguiente.<br><img src="../images/Act16/2026-11-03 23_04_57-Select Source.png"><br>
+                        Después en el selector de dispositivos, deberá señalar la evidencia del cual se obtendrá una copia bit a bit, para esta práctica será la memoria USB que ha introducido anteriormente.<br>Observé el siguiente ejemplo;<br><img src="../images/Act16/2026-11-03 23_05_46-Select Drive.png"><br>
+                        Cuando este seguro de haber seleccionado correctamente el dispositivo de adquisición, haga clic en Finish y a continuación configure los parámetros de destino (dónde se almacenará la evidencia), para ello haga clic en “Add…”, proceda a seleccionar el formato deseado (para esta práctica utilizaremos un formato crudo de lectura universal identificado como dd).<img src="../images/Act16/2026-11-03 23_07_18-Create Image.png"><img src="../images/Act16/2026-11-03 23_07_39-Select Image Type.png"></li> 
+                        <li>Configure los parámetros de información de evidencia con los siguientes datos.<br>
+                        Case Number: InfoCrim-01_21.11.2023<br>
+                        Evidence Number: 00 (Original Adq).<br>
+                        Unique Description: CNO IV - análisis de incidente de fraude bancario.<br>
+                        Examiner: Su nombre completo iniciando por apellido.<br>
+                        Notes: Adquisición realizada en LIF de la UPSLP.<br><img src="../images/Act16/2026-11-03 23_09_11-Evidence Item Information.png"></li>
+                        <li>Después seleccione la carpeta de destino, se recomienda crear una Nueva Carpeta con el nombre “InfoCrim13” en el Escritorio.<br>
+                        En la sección de “Image Filename” deberá ingresar el nombre del archivo de evidencia que se generará sin incluir la extensión, para este caso será: infocrim_ApAmN.<br>
+                        Dónde Ap, es su apellido paterno, Am; su apellido materno y N es su nombre.<br><img src="../images/Act16/2026-11-08 17_45_15-Select Image Destination.png"> 
+                        </li>
+                        <li>Una vez concluida su configuración haga clic en Start.</li>
+                        <li>Proporcione las marcas de tiempo del proceso de adquisición de material digital (no olvide anexar captura de pantalla).<br>
+                        Hora de inicio de adquisición en LIF (desde la selección del item hasta hacer clic en Start):<br>
+                        <strong>Acquisition started:   Sat Nov  7 09:18:05 2026</strong><br>
+                        Hora de término de adquisición:<br>
+                        <strong>Acquisition finished:  Sat Nov  7 09:20:52 2026</strong><br><img src="../images/Act16/2026-11-07 09_27_11-Image Summary.png"><br>
+                        Tiempo transcurrido:<br>
+                        <strong>02:47</strong><br><img src="../images/Act16/2026-11-07 09_21_53-Creating Image….png"></li>
+                        <li>¿Qué tipo de formato se refiere el Raw (dd)?<br>
+                        El formato <strong>DD</strong> (también llamado <strong>raw</strong>, <strong>img</strong> o <strong>bin</strong>) es el formato de imagen forense más simple y universal. Consiste en una copia bit a bit del dispositivo de origen, sin ningún tipo de procesamiento, compresión o metadatos añadidos. El archivo resultante es una réplica exacta del disco original, byte por byte.
+                        </li>
+                        <li>¿Qué tipo de formato se refiere el E01?<br>
+                        El formato <strong>E01</strong>, también conocido como <strong>Expert Witness Format</strong> (<strong>EWF</strong>) o <strong>EnCase Evidence File</strong>, es el estándar de imagen forense más utilizado en investigaciones digitales a nivel mundial. Desarrollado originalmente por <strong>Guidance Software</strong> para su herramienta <strong>EnCase</strong>, actualmente es un formato abierto soportado por prácticamente todas las herramientas forenses del mercado.
+                        </li>
+                        <li>¿Cuál es la diferencia entre un formato SMART y un formato E01?<br>
+                        El formato <strong>Smart</strong> es información del estado de salud de nuestro dispositivo de almacenamiento y el formato <strong>E01</strong> es un formato de imagen forense creado por EnCase que almacena una copia bit a bit del disco junto con metadatos, hash de verificación y compresión
+                        </li>
+                        <li>Al finalizar todo este procedimiento se presentan algunos resultados finales, presente los resultados en formato de texto y captura de pantalla.<br>
+                        Sectores copiados.<br>
+                        <strong>7626752</strong><br>
+                        Hash MD5.<br>
+                        <strong>5d2cd53f0dbabb9b8bd4f1b9e31625c2</strong><br>
+                        Hash SHA-1.<br>
+                        <strong>25fe9b617f3b516aa68e5c3f954b616fbdf05e16</strong><br><img src="../images/Act16/2026-11-07 09_23_29-Drive_Image Verify Results.png">
+                        </li>
+                        <li>13.	¿Cuántos archivos fueron generados?<br>
+                        <strong>4</strong><br><img src="../images/Act16/2026-11-08 18_06_49-InfoCrim13 - Explorador de archivos.png">
+                        </li>
+                        <li>En el mismo directorio o unidad donde se ha creado la imagen forense, se encontrará un archivo de texto con el mismo nombre de la imagen forese creada (formato txt), en el cual reside toda la información detallada del proceso realizado.<br>
+                        Tome captura de pantalla de este item y anexe el archivo al envío de esta práctica.<br><img src="../images/Act16/2026-11-07 09_55_06-infocrim_ASMA.001.txt_ Bloc de notas.png">
+                        </li>
+                    </ol>
+
+                    
+                    <div class="activity-links">
+                    <a href="../Documentos/Amaya Saucedo Marco Antonio-ACT16.pdf" target="_blank"><i class="fas fa-link"></i>PDF</a>
+                        </div>
+                </div>
+            </div>
+        </section>
+    </main>
+     <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 Marco Antonio Amaya - UPSLP - Todos los derechos reservados</p>
+            <div class="footer-links">
+                        <a href="https://github.com/yamidra" target="_blank"><i class="fab fa-github"></i></a>
+                    </div>
+        </div>
+    </footer>
+</body>
+</html>
