@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>yamidra - Actividad 17</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="https://kit.fontawesome.com/15373c54ac.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <nav id="navbar">
+            <div class="logo">Marco<span>Amaya</span></div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="../Actividades/activities.html">Actividades</a></li>
+                <li><a href="../Proyectos/Proy-1.html">Proyectos</a></li>
+                <li><a href="../Road/Roadof.html">ROAD TO HALL OF FAME</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="reporte" class="repot">
+            <h1 class="section-title">La memoria del crimen: extracción de evidencia de un volcado RAM.</h1>
+            <div class="rep">
+                <div class=" rep-content">
+                    <h2>Parte I. Análisis forense de memoria volátil.</h2>
+                    <p>Hechos: Elementos de la FGM especializada han obtenido una muestra de un volcado de memoria
+                    ram de un presunto cibercriminal, a quién se presume realice actividades para el trasiego de
+                    estupefacientes y rapto.</p>
+                    <p>El departamento de investigación, análisis e inteligencia, ha recabado información de fuentes
+                    abiertas, derivado de lo anterior se conocen las siguientes hipótesis.</p>
+                    <p>El cibercriminal tiene amplios conocimientos en tecnologías de la información, analiza y
+                    “engancha” a sus víctimas a través de ingeniería social por medio de redes sociales.</p>
+                    <p>Se ha autodenominado “Morty”, esto tras vincular un enlace de Reedit con un grupo secreto en
+                    Telegram, en donde se presume que la víctima con identificación reservada GTH, haya sido
+                    contactada por el mismo sujeto.</p>
+                    <p>En este mismo canal de Telegram se ha obtenido un comentario de un usuario de nombre “Ricky”,
+                    quién ha escrito que cualquier persona que desee pertenecer a “S0_Just_M0v3_Socy” deberá
+                    enviar 0.0000043 BTC a su cartera digital, inteligencia presume se trata de un grupo de
+                    cibercriminales que intentan formar una red botnet.</p>
+                    <p>A través de la Mesa de Seguridad por la Paz Mundial, el organismo institucional SEDENE, ha
+                    proporcionado las iniciales FAF3, quién se presume sea un objetivo potencial. Asimismo, el cuerpo
+                    de inteligencia CNDI, ha proporcionado las iniciales TFE, como posible autor de los servidores
+                    Lunar que son utilizados para “publicitar” a víctimas que serán empleadas para prostitución.</p>
+                    <p>Es indispensable conocer el ordenador que utiliza, para vincular el caso con la evidencia
+                    EV455FGM, en la que se obtuvo, que todos los ataques han sido realizados a través de cierto
+                    direccionamiento IP bajo un sistema operativo específico.</p>
+                    <p>Se desea obtener una contraseña que coincida con la evidencia EV456FGM, en la que se observa
+                    el empleo de correos electrónicos para fines maliciosos.</p>
+                    <p>También se buscar identificar los servicios Torrent que el cibercriminal utiliza para enviar los videos
+                    de sus víctimas y solicitar con ellos un rescate posterior.</p>
+                    <p><strong>Instrucciones:</strong> Detalle el proceso a través de capturas de pantallas, deberá incluir el comando
+                    ejecutado.</p>
+                    <p><ol class="repo">
+                        <li>Utilice la herramienta Volatility (<a href="https://github.com/volatilityfoundation/volatility" target="_blank">https://github.com/volatilityfoundation/volatility</a>) el cuál
+                        puede ser ejecutado desde Kali Linux o bien mediante Windows, proceda a descargar la
+                        imagen de análisis a través del siguiente enlace:
+                        <a href="https://mega.nz/file/sh8wmCIL#b4tpech4wzc3QQ6YgQ2uZnOmctRZ2duQxDqxbkWYipQ" target="_blank">https://mega.nz/file/sh8wmCIL#b4tpech4wzc3QQ6YgQ2uZnOmctRZ2duQxDqxbkWYipQ</a><br>
+                        Identifique la marca de tiempo local para el volcado de memoria.<br>
+                        <strong>2018-08-04 22:34:22 +0300</strong><br>
+                        Comando:<strong> vol.py imageinfo -f OtterCTF.vmem</strong><br>
+                        <img src="../images/Act17/1.png" alt="1"><br>
+                        ¿Cuál es su análisis respecto al resultado obtenido en “Image local date and time”?
+                        <strong>Image local date and time:</strong> es la hora local configurada en el sistema operativo en la
+                        maquina al momento de extraer el volcado de memoria junto a su desplazamiento
+                        horario mientras que<strong> Image date and time:</strong> es una marca de tiempo estandarizada en
+                        UTC (Tiempo Universal Coordinado) esta elimina cualquier ambigüedad por cambios de
+                        horario.
+                        </li>
+
+                        <li>Identifique el Sistema Operativo y arquitectura que el cibercriminal ha utilizado.<br>
+                        <strong>Win7SP1x64</strong><br>
+                        Comando:<strong> vol.py kdbgscan -f OtterCTF.vmem</strong><br>
+                        <img src="../images/Act17/2.png" alt="2">
+                        <img src="../images/Act17/3.png" alt="3">
+                        </li>
+
+                        <li>¿Cuál es la contraseña del perfil del cibercriminal quién se presume utilizaba el
+                        ordenador pues el inicio de sesión se encontraba visible cuando el sistema en vivo
+                        estaba en ejecución?<br>
+                        <strong>MortyIsReallyAnOtter</strong><br>
+                        <img src="../images/Act17/4.png" alt="4"><br>
+                        Comandos:<strong> vol.py -f /home/kali/Desktop/OtterCTF.vmem --profile=Win7SP1x64
+                        lsadump</strong>
+                        </li>
+
+                        <li>Identifique el direccionamiento IP que fue utilizado por el cibercriminal al momento de
+                        atacar el sistema local.<br>
+                        <strong>192.168.202.131</strong><br>
+                        <img src="../images/Act17/5.png" alt="5"><br>
+                        Comando:<strong> vol.py -f /home/kali/Desktop/OtterCTF.vmem --profile=Win7SP1x64
+                        netscan</strong> 
+                        </li>
+
+                        <li>Visualice las llaves del Registro del Sistema disponibles.<br>
+                        <img src="../images/Act17/6.png" alt="6"><br>
+                        ¿Por qué es de utilidad conocer el Registro del Sistema del dispositivo comprometido?
+                        Este contiene toda la información de las aplicaciones y configuraciones del equipo hasta
+                        el ultimo momento en que el usuario modifico o movió en el sistema operativo.<br>
+                        Comando:<strong> vol.py -f /home/kali/Desktop/OtterCTF.vmem --profile=Win7SP1x64
+                        hivelist</strong>
+                        </li>
+
+                        <li>Identifique el nombre del ordenador del cibercriminal
+                        Por medio del comando anterior encontramos la llave<strong> \REGISTRY\MACHINE/SYTEM</strong> en
+                        esta se encuentra en la ruta<strong> ControlSet001\Control\ComputerName\ComputerName</strong>
+                        en la cual podemos encontrar el nombre del equipo.<br>
+                        <strong>WIN-LO6FAF3DTFE</strong><br>
+                        <img src="../images/Act17/7.png" alt="7"><br>
+                        Comando:<strong> vol.py -f OtterCTF.vmem --profile Win7SP1x64 printkey -o
+                        0xfffff8a000024010 -K 'ControlSet001\Control\ComputerName\ComputerName'</strong>
+                        </li>
+
+                        <li>Identifique tres procesos que considere importante del cual el cibercriminal haya iniciado
+                        la ejecución del software.<br>
+                        Comando:<strong> vol.py -f /home/kali/Desktop/OtterCTF.vmem --profile=Win7SP1x64 pslist</strong><br>
+                        <img src="../images/Act17/8.png" alt="8"><img src="../images/Act17/9.png" alt="9"><br>
+                        Proceso A:<strong> Rick And Morty.exe</strong><br>
+                        ¿Por qué considera que es importante?<br>
+                        Al analizar este proceso con el comando<strong> vol.py -f
+                        /home/kali/Desktop/OtterCTF.vmem --profile=Win7SP1x64 cmdline -p 3820</strong> el cual
+                        nos da la ruta del archivo ejecutable se encuentra en una carpeta llamada Torrents esto
+                        junto al nombre del archivo que pare estar compartiéndolo como la temporada 1 de Rick
+                        and Morty resulte que es un archivo malicioso el cual se puede estar utilizando para
+                        vulnerar las computadoras de sus víctimas.
+                        <img src="../images/Act17/10.png" alt="10"><br>
+                        Proceso B:<strong> vmware-tray.exe</strong><br>
+                        ¿Por qué considera que es importante?<br>
+                        Al analizar los procesos con el comando<strong> vol.py -f
+                        /home/kali/Desktop/OtterCTF.vmem --profile=Win7SP1x64 pstree</strong> el cual nos indica
+                        los procesos que fueron lanzados por otros podemos ver que el proceso Rick And Morty
+                        manda llamar a este.<br>
+                        <img src="../images/Act17/11.png" alt="11"><br>
+                        <strong>vmware-tray</strong> podría parecer un proceso legítimo, pero al analizar la ruta del proceso
+                        podemos darnos cuenta que se esta ejecutando desde una ruta inusual.<br>
+                        <img src="../images/Act17/12.png" alt="12"><br>
+                        Proceso C:<strong> LunarMS.exe</strong><br>
+                        ¿Por qué considera que es importante?<br>
+                        La Mesa de Seguridad por la Paz Mundial, el organismo institucional SEDENE ha indicado
+                        que el posible autor de los servidores Lunar es utilizado para “publicitar” a víctimas que
+                        serán empleadas para prostitución. Por lo cual este proceso es de gran interés.
+                        </li>
+
+                        <li>Identifique el direccionamiento IP que conecta al servidor malicioso.<br>
+                        Comando:<strong> vol.py -f /home/kali/Desktop/OtterCTF.vmem --profile=Win7SP1x64
+                        netscan</strong><br>
+                        <img src="../images/Act17/13.png" alt="13"><br>
+                        ¿Cuál fue el puerto que utilizó además de la dirección IP?<br>
+                        <strong>7575</strong><br>
+                        ¿Cuál es la ubicación posible del atacante (<a href="https://www.geolocation.com/es" target="_blank">https://www.geolocation.com/es</a> )?<br>
+                        <strong>Londres Inglaterra Lat: 51.50853 Long: -0.12574</strong><br>
+                        <img src="../images/Act17/14.png" alt="14">
+                        </li>
+
+                        <li>Identifique los correos electrónicos que el cibercriminal utilizó para llevar a cabo los
+                        ataques de ingeniería social.<br>
+                        Comando:<strong> vol.py -f /home/kali/Desktop/OtterCTF.vmem --profile=Win7SP1x64
+                        filescan |grep -i "chrome.*history*"</strong><br>
+                        <img src="../images/Act17/15.png" alt="15"><br>
+                        En el análisis de procesos identificamos que solo se usa el navegador Chrome por lo cual
+                        con este comando obtenemos información del historial de Chrome y con el siguiente
+                        comando:<strong> vol.py -f /home/kali/Desktop/OtterCTF.vmem --profile=Win7SP1x64
+                        dumpfiles -Q 0x000000007d45dcc0 -D '/home/kali/Desktop'</strong> dumpeamos este.<br>
+                        <img src="../images/Act17/16.png" alt="16"><br>
+                        Se crea un archivo .dat que es una base de datos SQLite3database<br>
+                        <img src="../images/Act17/17.png" alt="17"><br>
+                        Al abrir esta con software compatible podemos ver las páginas que se visitaron aquí
+                        encontramos el dominio de los emails creados.<br>
+                        <img src="../images/Act17/18.png" alt="18"><br>
+                        Extraemos las cadenas ASCII estándar de archivo vmem con el siguiente comando: <strong>
+                        strings /home/kali/Desktop/OtterCTF.vmem >
+                        /home/kali/Desktop/OtterCTF.vmem.strings .</strong>
+                        Y con el comando<strong>grep "@mail.com" '/home/kali/Desktop/OtterCTF.vmem.strings'</strong> 
+                        buscamos dentro de esta cadena ASCII el dominio encontrado<strong> @mail.com</strong>
+                        <img src="../images/Act17/19.png" alt="19"><br>
+                        ¿Cuáles fueron los correos empleados?<br>
+                        <strong>rickopicko@mail.com</strong><br>
+                        ¿Desde qué plataforma y navegador fueron abiertos estos correos electrónicos?<br>
+                        <strong>Chrome</strong>
+                        </li>
+
+                        <li>Después de un análisis exhaustivo, se obtuvo un indicio de interés, se trata del proceso
+                        3720, el cuál fue ejecutado en el ordenador vulnerado, dicho proceso indica una
+                        ejecución falsa de un programa, sin embargo, oculta un mensaje malicioso.<br>
+                        Identifique pues la cartera del monedero cripto a dónde presuntamente son enviado los
+                        recursos del rescate.<br>
+                        Comandos:<strong> vol.py -f /home/kali/Desktop/OtterCTF.vmem --profile=Win7SP1x64
+                        procdump -p 3720 -D ./</strong> con este comando se extrae el ejecutable del proceso 3720<br>
+                        <img src="../images/Act17/20.png" alt="20"><br>
+                        Con este archivo se puede analizar con antivirus usando la página virus total<br>
+                        <img src="../images/Act17/21.png" alt="21"><br>
+                        Con la información mostrada nos podemos dar cuenta que pertenece al tipo de malware
+                        Ransomware ahora estraemos la memoria del proceso en cuestión con el comando:<strong>
+                        vol.py -f /home/kali/Desktop/OtterCTF.vmem --profile="Win7SP1x64" memdump
+                        -p 3720 -D .</strong><br>
+                        <img src="../images/Act17/22.png" alt="22"><br>
+                        En este buscamos la cadena ransomware en busca de información relevante con el
+                        siguiente comando:<strong> strings -e l 3720.dmp | grep -i -A 5 "ransomware"</strong><br>
+                        <img src="../images/Act17/23.png" alt="23"><br>
+                        ¿Cuál es la cartera de criptomoneda?<br>
+                        <strong>1MmpEmebJkqXG8nQv4cjJSmxZQFVmFo63M</strong><br>
+                        ¿Dicha cartea se encuentra reportada en listas negras de BTC black
+                        (https://btcblack.it/index.cgi/verify)?<strong> No</strong><br>
+                        <img src="../images/Act17/24.png" alt="24"><br>
+                        </li>
+
+                    </ol>
+
+                    </p>
+                    <h2>Conclusiones</h2>
+                    <p>La herramienta dispone múltiples formas de trabajo por lo cual ciertos procesos o obtención de
+                    evidencias puede ser de múltiples formas, aunque la aplicación Volatility usada en este ejercicio
+                    esta archivada desde 2025 ya que corre con Python 2 en este caso 2.7.18 el cual esta
+                    descontinuado. En mi caso trate de que funcionara sin éxito en mi maquina con Windows 11,
+                    por lo cual opte usar Kali Linux encontrando el mismo problema sin embargo encontré las
+                    librerías y dependencias y al final logre ejecutarlo rescatando archivos de una distribución del
+                    2023. También se encuentra la herramienta Volatility 3 sin embargo sus comandos son muy
+                    diferentes incluyendo la presentación de la información.</p>
+
+                    
+                    <div class="activity-links">
+                    <a href="../Documentos/Amaya Saucedo Marco Antonio-ACT17.pdf" target="_blank"><i class="fas fa-link"></i>PDF</a>
+                        </div>
+                </div>
+            </div>
+        </section>
+    </main>
+     <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 Marco Antonio Amaya - UPSLP - Todos los derechos reservados</p>
+            <div class="footer-links">
+                        <a href="https://github.com/yamidra" target="_blank"><i class="fab fa-github"></i></a>
+                    </div>
+        </div>
+    </footer>
+</body>
+</html>
