@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>yamidra - Actividad 19</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="https://kit.fontawesome.com/15373c54ac.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <nav id="navbar">
+            <div class="logo">Marco<span>Amaya</span></div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="../Actividades/activities.html">Actividades</a></li>
+                <li><a href="../Proyectos/Proy-1.html">Proyectos</a></li>
+                <li><a href="../Road/Roadof.html">ROAD TO HALL OF FAME</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="reporte" class="repot">
+            <h1 class="section-title">Los primeros minutos cuentan: adquisición forense en escenas del crimen digital.</h1>
+            <div class="rep">
+                <div class=" rep-content">
+                    <h2>Parte I. Adquisición de evidencia.</h2>
+                    <p>El equipo de trabajo de fuerzas del orden lo ha designado como investigador forense digital,
+                    como primer respondiente deberá adquirir la evidencia forense en el sistema en caliente Windows
+                    que ha sido comprometido.</p>
+                    <p><strong>Instrucciones:</strong> Detalle el proceso a través del informe ejecutivo, dónde deberá explicar la
+                    utilización de cada uno de los comandos de adquisición, así como el resultado de este.</p>
+                    <P>Cada uno de los comandos a continuación mostrados pueden concatenarse con el símbolo mayor
+                    que espacio y escoger un nombre con la extensión .txt para guardar lo mostrado en pantalla para
+                    posteriores análisis ejemplo<strong> date > fechayhora.txt</strong></P>
+                    <p><ol class="repo">
+                        <li>Obtenga la fecha y hora del sistema.<br>
+                        <strong>date</strong><br>
+                        <img src="../images/Act19/1.png" alt="1"><br>
+                        Comando simple que nos muestra hora y fecha que tiene configurado el sistema en este
+                        momento.
+                        </li>
+
+                        <li>Obtenga un listado de los procesos en ejecución.<strong> tasklist</strong><br>
+                        <img src="../images/Act19/2.png" alt="2"><br>
+                        Este comando muestra: El nombre de la imagen, el PID (Identificador de Proceso), el
+                        nombre de la sesión, el número de sesión y el uso de memoria del sistema y tiene opciones
+                        para ver solo el PID indicado.
+                        </li>
+
+                        <li>Obtenga los servicios del dispositivo de análisis desde el símbolo del sistema y después
+                        desde Powershell, ¿Qué diferencias aprecia? ¿Cuál es su análisis respecto al resultado?
+                        El comando es diferente y la información que nos muestra incluye nuevos parámetros
+                        como tiempo de uso de CPU y uso de memoria física WS.<strong> Get-Process</strong><br>
+                        <img src="../images/Act19/3.png" alt="3">
+                        </li>
+
+                        <li>Obtenga un listado de los usuarios que se encuentran actualmente logueados en el
+                        sistema comprometido.<br>
+                        <strong>.\NetUsers.exe /local</strong><br>
+                        Esta herramienta personalizada nos indica los usuarios locales que están activos dentro de
+                        nuestro sistema.<br>
+                        <img src="../images/Act19/4.png" alt="4">
+                        </li>
+
+                        <li>Obtenga un listado de los usuarios que alguna vez se loguearon en el sistema
+                        comprometido.<br>
+                        <strong>.\NetUsers.exe /history /local</strong><br>
+                        Aquí pueden aparecer usuarios borrados que alguna vez fueron parte del sistema local.<br>
+                        <img src="../images/Act19/5.png" alt="5">
+                        </li>
+
+                        <li>Obtenga la información de la red del sistema comprometido.<br>
+                        <strong>Ipconfig /all</strong><br>
+                        La información más completa para el diagnóstico revisión de configuración de la red de
+                        nuestro sistema.<br>
+                        <img src="../images/Act19/6.png" alt="6">
+                        </li>
+
+                        <li>Identifique los nombres asignados por NetBIOS en el sistema comprometido.<br>
+                        <strong>nbtstat -n</strong><br>
+                        Su función es mostrar la tabla de nombres NetBIOS locales que el equipo ha registrado en
+                        la red local incluyendo el nombre del host, el grupo de trabajo y los sufijos numéricos que
+                        identifican servicios activos.<br>
+                        <img src="../images/Act19/7.png" alt="7">
+                        </li>
+
+                        <li>Obtenga las conexiones establecidas en el sistema vulnerado.<br>
+                        <strong>netstat -ano | findstr ESTABLISHED</strong><br>
+                        Muestra todas las conexiones y puertos en escucha, las direcciones y números de puerto
+                        en formato numérico y filtra solo las establecidas.<br>
+                        <img src="../images/Act19/8.png" alt="8">
+                        </li>
+
+                        <li>Obtenga la relación de las aplicaciones abiertas con el puerto de comunicación establecido
+                        en el sistema comprometido.<br>
+                        <strong>netstat -bno</strong><br>
+                        Al cambiar la opción -b nos incluye el nombre de la aplicación.<br>
+                        <img src="../images/Act19/9.png" alt="9">
+                        </li>
+
+                        <li>Identifique los dominios a los que se ha accedido desde el ordenador en investigación.<br>
+                        <strong>ipconfig /displaydns</strong><br>
+                        Muestra el cache del cliente dns.<br>
+                        <img src="../images/Act19/10.png" alt="10">
+                        </li>
+
+                        <li>Obtenga la información almacenada de comunicación entre la dirección física y la
+                        dirección lógica del equipo con los que se haya comunicado recientemente el dispositivo
+                        en investigación.<br>
+                        <strong>arp -a</strong><br>
+                        Muestra el contenido de la cache de arp que es un protocolo que traduce direcciones
+                        lógicas a direcciones físicas.<br>
+                        <img src="../images/Act19/11.png" alt="11">
+                        </li>
+
+                        <li>Obtenga un listado de redes WiFi a las que se ha conectado el equipo comprometido.<br>
+                        <strong>netsh wlan show profiles</strong><br>
+                        Muestra los perfiles o reses inalámbricas guardadas en nuestro sistema.<br>
+                        <img src="../images/Act19/12.png" alt="12">
+                        </li>
+
+                        <li>Recabe el histórico del intérprete de comandos que se han ejecutado en el sistema de
+                        análisis.<br>
+                        <strong>Get-History</strong><br>
+                        Muestra el listado de comandos que se han ejecutado en el sistema.<br>
+                        <img src="../images/Act19/13.png" alt="13">
+                        </li>
+
+                        <li>Visualice las unidades mapeadas en el sistema de investigación.<br>
+                       <strong>net use</strong><br>
+                        Un listado de todas las unidades de red mapeadas actualmente en la sesión del usuario,
+                        indicando la letra de unidad asignada sin embargo al no tener una de estas nos arroja la
+                        siguiente información.<br>
+                        <img src="../images/Act19/14.png" alt="14">
+                        </li>
+
+                        <li>Obtenga los recursos compartidos del sistema en análisis.<br>
+                        <strong>net share</strong><br>
+                        Un listado en formato de tabla con todos los recursos que actualmente están compartidos
+                        en el equipo.<br>
+                        <img src="../images/Act19/15.png" alt="15">
+                        </li>
+
+                        <li>Obtenga la información relacionada del equipo comprometido.<br>
+                        <strong>systeminfo</strong><br>
+                        Recopila y muestra un resumen detallado y exhaustivo de la configuración del sistema
+                        operativo, el hardware, la memoria y el entorno de red del sistema.<br>
+                        <img src="../images/Act19/16.png" alt="16">
+                        </li>
+
+                        <li>Recupere las tareas programadas en el sistema operativo de análisis.<br>
+                        <strong>schtask /query</strong><br>
+                        Consulta y audita todas las tareas programadas y registradas en el sistema.<br>
+                        <img src="../images/Act19/17.png" alt="17">
+                        </li>
+
+                        <li>Exporte los logs de los registros del sistema para su posterior análisis en la ubicación de
+                        Escritorio del usuario en investigación.<br>
+                        <strong>wevtutil epl System “%USERPROFILE%\Desktop\Act19\System.evtx”</strong><br>
+                        Administra, consulta y respalda los registros de eventos del sistema.<br>
+                        <img src="../images/Act19/18a.png" alt="18a"><img src="../images/Act19/18b.png" alt="18b">
+                        </li>
+
+                        <li>Obtenga el fichero Host del sistema comprometido para su posterior análisis.<br>
+                        <strong>type C:\Windows\System32\drivers\etc\hosts</strong><br>
+                        El archivo hosts es un documento de texto plano que el sistema operativo utiliza para
+                        resolver nombres de dominio antes de consultar a cualquier servidor DNS externo.<br>
+                        <img src="../images/Act19/19.png" alt="19">
+                        </li>
+
+                        <li>Obtenga el listado con base a la fecha de creación del árbol de directorios y ficheros del
+                        sistema operativo comprometido.<br>
+                        <strong>dir /s /t:c /o:d</strong><br>
+                        dir: El comando nativo del Símbolo del sistema para listar archivos y carpetas.<br>
+                        /s (Subdirectorios): Obliga al comando a recorrer de manera recursiva todas las
+                        subcarpetas contenidas en la ruta especificada, mapeando todo el árbol de directorios.<br>
+                        /t:c (Time Created): Modifica la marca de tiempo que utiliza el comando.<br>
+                        /o:d (Order by Date): Ordena los resultados según la marca de tiempo seleccionada.<br>
+                        <img src="../images/Act19/20.png" alt="20">
+                        </li>
+                    </ol></p>
+
+                    
+                    <div class="activity-links">
+                    <a href="../Documentos/Amaya Saucedo Marco Antonio-ACT19.pdf" target="_blank"><i class="fas fa-link"></i>PDF</a>
+                        </div>
+                </div>
+            </div>
+        </section>
+    </main>
+     <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 Marco Antonio Amaya - UPSLP - Todos los derechos reservados</p>
+            <div class="footer-links">
+                        <a href="https://github.com/yamidra" target="_blank"><i class="fab fa-github"></i></a>
+                    </div>
+        </div>
+    </footer>
+</body>
+</html>
