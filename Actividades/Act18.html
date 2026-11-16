@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>yamidra - Actividad 18</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="https://kit.fontawesome.com/15373c54ac.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <nav id="navbar">
+            <div class="logo">Marco<span>Amaya</span></div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="../Actividades/activities.html">Actividades</a></li>
+                <li><a href="../Proyectos/Proy-1.html">Proyectos</a></li>
+                <li><a href="../Road/Roadof.html">ROAD TO HALL OF FAME</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="reporte" class="repot">
+            <h1 class="section-title">La investigación forense: la huella digital de un cibercriminal.</h1>
+            <div class="rep">
+                <div class=" rep-content">
+                    <h2>Parte I. Análisis forense. </h2>
+                    <p>Para esta práctica deberá analizar una muestra que es utilizado para entrenamiento forense digital dirigido hacia los agentes de la Agencia Nacional de Seguridad NSA Cybersecurity (https://www.nsa.gov/Cybersecurity/) y las diferentes fuerzas del orden en el mundo.</p>
+                    <p>El escenario se integra por 31 preguntas de análisis, de los cuales deberá únicamente responder los que a continuación se proporcionan.</p>
+                    <p>Escenario-<br>
+                    El 20/09/04, una computadora portátil Dell CPi, número de serie VLQLW, fue encontrada abandonada junto con una tarjeta PCMCIA inalámbrica y una antena externa 802.11b casera. 
+                    Se sospecha que esta computadora fue utilizada con fines de piratería, aunque no se puede vincular a un sospechoso de piratería, G=r=e=g S=c=h=a=r=d=t. (Los signos iguales son sólo para evitar que los rastreadores web indexen este nombre; no hay signos iguales en los archivos de imagen).
+                    </p>
+                    <p>Schardt también recibe el apodo en línea de “Mr. Evil” y algunos de sus asociados han dicho que estacionaría su vehículo dentro del alcance de puntos de acceso inalámbricos (como Starbucks y otros hotspots de T-Mobile) donde luego interceptaría el tráfico de Internet, intentando obtener números de tarjetas de crédito, nombres de usuario y contraseñas.</p>
+                    <p>Esta imagen de prueba requiere una variedad de habilidades para responder las preguntas dadas. Encuentre cualquier software de piratería, evidencia de su uso y cualquier dato que pueda haberse generado. Intente vincular la computadora al sospechoso, G=r=e=g S=c=h=a=r=d=t.</p>
+                    <p>Instrucciones: Detalle el proceso a través de capturas de pantallas.
+
+                    </p>
+                    <ol class="repo">
+                        <li>Obtenga la imagen forense de análisis a través del enlace:<a href="https://cfreds-archive.nist.gov/Hacking_Case.html" target="_blank"> https://cfreds-archive.nist.gov/Hacking_Case.html</a>, la evidencia esta compuesta por 08 partes, descargue los ficheros en una misma carpeta dentro de una “nueva carpeta” en el escritorio.<br>
+                        A continuación, ejecute Autopsy, seleccione “New Case”, configure el proyecto con los siguientes datos.<br>
+                        Case Name: INV01UPSLP.<br>
+                        Directorio Base: destino de directorio creado. <br>
+                        <img src="../images/Act18/1.png" alt="1"><br>
+                        Después en la siguiente pestaña.<br>
+                        Number: 01<br>
+                        En la sección “Examiner”, introduzca sus credenciales.<br>
+                        Notes: Fraude (carding) Greg Schardt.<br>
+                        <img src="../images/Act18/2.png" alt="2"><br>
+                        Cree una nueva organización con la siguiente información y seleccione la misma.<br>
+                        Organization Name: Universidad Politécnica de San Luis Potosí.<br>
+                        Name: CNO IV – Seguridad Informática. <br>
+                        Email: matricula@upslp.edu.mx<br>
+                        Phone: xxxxxx<br>
+                        <img src="../images/Act18/3.png" alt="3"><img src="../images/Act18/4.png" alt="4"><br>
+                        Una vez finalizado el proceso de configuración, el programa iniciará a procesar la estructura base del proyecto, posteriormente observará una pestaña en la que deberá seleccionar “Generate new host name base don data source name”.<br>
+                        <img src="../images/Act18/5.png" alt="5">
+                        </li>
+
+                        <li>En la venta siguiente seleccione “Disk Image or VM File Files”.<br>
+                        <img src="../images/Act18/6.png" alt="6"><br>
+                        ¿A qué se refiere el tipo de origen “Logical Files”?<br>
+                        <strong>Archivos sueltos en cualquier formato que se desen analizar.</strong><br>
+                        ¿A qué se refiere el tipo de origen “Local Disk”?<br>
+                        <strong>A un disco duro conectado directamente en nuestro equipo</strong><br>
+                        </li>
+
+                        <li>En la ventana siguiente seleccione la ubicación dónde se encuentran los ficheros que serán analizados:<br>
+                        <img src="../images/Act18/7.png" alt="7"><br>
+                        Después marqué todos los módulos de búsqueda que se encuentran disponibles y finalicé el proceso de importación de evidencia.<br>
+                        <img src="../images/Act18/8.png" alt="8"><br>
+                        ¿Cuál es el hash de la imagen? ¿Coinciden el hash de adquisición y verificación?<br>
+                        <strong>aee4fcd9301c03b3b054623ca261959a</strong><br>
+                        <img src="../images/Act18/9.png" alt="9">
+                        </li>
+
+                        <li>¿Qué sistema operativo se utilizó en la computadora?<br>
+                        <strong>Microsoft Windows XP</strong><br>
+                        <img src="../images/Act18/10.png" alt="10">
+                        </li>
+
+                        <li>¿Cuándo fue la fecha de instalación?<br>
+                        Esta información se encuentra en el registro de Windows en la ruta
+                        HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\InstallDate<br>
+                        La ruta donde se almacena est llave es
+                        C:\Windows\system32\config\Software\Microsoft\Windows
+                        NT\CurrentVersion\InstallDate en est ruta encontramos la fecha de instalacion
+                        0x41252e3b (1092955707) esta fecha está en formato Unix por lo cual hay que convertirla
+                        dando como resultado 
+                        <strong>jueves, 19 de agosto de 2004, 10:48:27 p.m.</strong>
+                        <img src="../images/Act18/11.png" alt="11"><img src="../images/Act18/12.png" alt="12">
+                        </li>
+    
+                        <li>¿Cuál es la configuración de zona horaria?<br>
+                        HKEY_LOCAL_MACHINE\system\CurrentControlSet\Control\TimeZoneInformation
+                        C:\windows\system32\config\system\CurrentControlSet\Control\TimeZoneInformation<br>
+                        <strong>Central standard time.</strong><br>
+                        <img src="../images/Act18/13.png" alt="13">
+                        </li>
+                        <li>¿Quién es el propietario registrado?<br>
+                        C:\Windows\system32\config\Software\Microsoft\Windows
+                        NT\CurrentVersion\RegisteredOwner<br>
+                        <strong>Greg Schardt</strong><br>
+                        <img src="../images/Act18/14.png" alt="14">
+                        </li>
+                        <li>¿Cuál es el nombre de la cuenta de la computadora?<br>
+                        C:\Windows\system32\config\Software\Microsoft\Windows
+                        NT\CurrentVersion\Winlogon<br>
+                        <strong>Mr. Evil</strong><br>
+                        <img src="../images/Act18/15.png" alt="15">
+                        </li>
+                        <li>¿Cuál es el nombre de dominio principal?<br>
+                        C:\Windows\system32\config\Software\Microsoft\Windows
+                        NT\CurrentVersion\Winlogon<br>
+                        <strong>N-1A9ODN6ZXK4LQ</strong><br>
+                        <img src="../images/Act18/16.png" alt="16">
+                        </li>
+                        <li>¿Cuándo fue la última fecha/hora registrada en que se apagó la computadora?<br>
+                        C:\WINDOWS\system32\config\software\Microsoft\WindowNT\CurrentVersion\Prefetch
+                        er\ExitTime<br>
+                        <strong>27/08/2004 – 10:46:27</strong><br>
+                        <img src="../images/Act18/17.png" alt="17">
+                        </li>
+                        <li>¿Cuántas cuentas están registradas (número total)?<br>
+                        C:\windows\system32\config\SAM\Domains\Account\Users\Names<br>
+                        <strong>5</strong><br>
+                        <img src="../images/Act18/18.png" alt="18">
+
+                        </li>
+
+                    </ol>
+                    <p>Referencias:<a href="https://medium.com/@sshekhar01/cfreds-project-hacking-case-challenge-writeup-
+                    6a52883eac0b" target="_blank"> https://medium.com/@sshekhar01/cfreds-project-hacking-case-challenge-writeup-
+                    6a52883eac0b</a></p>
+                    <div class="activity-links">
+                    <a href="../Documentos/Amaya Saucedo Marco Antonio-ACT18.pdf" target="_blank"><i class="fas fa-link"></i>PDF</a>
+                        </div>
+                </div>
+            </div>
+        </section>
+    </main>
+     <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 Marco Antonio Amaya - UPSLP - Todos los derechos reservados</p>
+            <div class="footer-links">
+                        <a href="https://github.com/yamidra" target="_blank"><i class="fab fa-github"></i></a>
+                    </div>
+        </div>
+    </footer>
+</body>
+</html>
