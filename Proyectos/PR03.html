@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>yamidra - Proyecto 3</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="https://kit.fontawesome.com/15373c54ac.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <nav id="navbar">
+            <div class="logo">Marco<span>Amaya</span></div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="../Actividades/activities.html">Actividades</a></li>
+                <li><a href="../Proyectos/Proy-1.html">Proyectos</a></li>
+                <li><a href="../Road/Roadof.html">ROAD TO HALL OF FAME</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="reporte" class="repot">
+            <h1 class="section-title">PR03. Operación narcos: expediente Kowhai.</h1>
+            <div class="rep">
+                <div class=" rep-content">
+                    <h2>Introducción.</h2>
+                    <p>Una operación internacional de inteligencia alertó a las autoridades de Nueva Zelanda sobre el
+                    posible ingreso de sustancias ilícitas a su territorio. Como resultado, dos pasajeros procedentes
+                    de Australia, identificados como John Fredricksen y Jane Esteban, fueron interceptados por
+                    agentes aduanales en el aeropuerto de Wellington.</p>
+                    <p>Durante la inspección del equipaje se descubrió un kilogramo de metanfetamina oculto en una
+                    maleta. Tras el aseguramiento de los pasajeros, las autoridades obtuvieron información sobre dos
+                    posibles lugares de entrega: la biblioteca de Eastbourne y un inmueble ubicado en Petone.
+                    </p>
+                    <p>La intervención policial en este último domicilio permitió localizar sustancias ilícitas, armas de
+                    fuego y una computadora de escritorio. El inmueble se encuentra relacionado con Steve Kowhai,
+                    un individuo bajo investigación por su posible participación en actividades de distribución de
+                    drogas.</p>
+                    <p>Los investigadores consideran que el dispositivo podría contener información sobre
+                    comunicaciones entre los involucrados, desplazamientos, archivos relacionados con las
+                    operaciones y mecanismos empleados para ocultar información.</p>
+                    <h2>Actividad</h2>
+                    <p>Formas parte de una unidad especializada de investigación forense digital. Las autoridades han
+                    puesto a tu disposición una imagen forense del equipo relacionado con Steve Kowhai, identificada
+                    como Narcos-1.</p>
+                    <p>Tu responsabilidad consiste en examinar la evidencia digital para identificar información relevante,
+                    reconstruir acontecimientos y determinar qué indicios permiten establecer posibles vínculos entre
+                    el dispositivo analizado y los hechos investigados.</p>
+                    <p>El objetivo central de la investigación será determinar qué actividades pueden demostrarse a
+                    partir del disco.</p>
+                    <h2>Parte I. Extracción e identificación de evidencia digital</h2>
+                    <p>Descarga Narcos-1.zip, conserva el archivo original y verifica su integridad. Usa FTK Imager,
+                    Autopsy u otra herramienta compatible. Para cada respuesta registra el valor exacto, la ruta dentro
+                    de la imagen, la herramienta o procedimiento y una captura o salida comprobable.</p>
+                    <p>Se utilizará la herramienta Auptosy debido a su gran versatilidad opciones de búsqueda y
+                    agrupación de información importante.</p>
+                    <img src="../images/PR03/1a.png" alt="1a">
+                    <p>Al cargar la imagen con Autopsy este analiza y nos indica su MD5 y SHA1 son idénticos al archivo
+                    de texto dentro de la descarga.<br>
+                    <strong>
+                    MD5: c63a3d19e9c9495b573f45be544e50f9<br>
+                    SHA1: 4d8e5041f47e0b0fc0eacc85d300661946537418</strong></p>
+                    <h3>Sistema operativo y navegación</h3>
+                    <ol class="repo">
+                        <li><p>¿Qué edición y versión de Windows se encuentran instaladas en el equipo? Indica el
+                        artefacto donde se obtiene la información.<br>
+                        <strong>Windows 10 Pro</strong>, se encuentra en<strong> Data Artifacts</strong> -><strong> Operating System Information.</strong><br>
+                        <img src="../images/PR03/1.png" alt="1">
+                        </p></li>
+
+                        <li><p>¿Cuál es el nombre de la carpeta del perfil principal y cuál es su ruta absoluta?<br>
+                        Steve<br>
+                        <strong>C:\Users\Steve</strong> (Ruta Windows)<br>
+                        <strong>/img_Narcos-1.001/vol_vol7/Users/Steve</strong>  (Ruta Autopsy)<br>
+                        <img src="../images/PR03/3.png" alt="3"><br>Dentro de<strong> OS Accounts</strong><br><img src="../images/PR03/2.png" alt="2">
+                        </p></li>
+                        
+                        <li><p>¿Cuál es la ruta de la clave UserAssist que registra actividad de programas en el perfil
+                        principal?<br>
+                        <strong>C:\Users\ Steve \NTUSER.DAT</strong> (Ruta Windows)<br>
+                        <Strong>/img_Narcos-1.001/vol_vol7/Users/Steve/NTUSER.DAT (Ruta Autopsy)
+                        Software\Microsoft\Windows\CurrentVersion\Explorer\UserAssist\</Strong>  (Ruta dentro
+                        del archivo NTUSER.DAT)<br>
+                        <img src="../images/PR03/4.png" alt="4">
+                        </p></li>
+
+                        <li><p>¿Qué dos navegadores presentan artefactos de actividad? Identifica el archivo o base
+                        de datos del historial de cada uno.<br>
+                        <strong>Data Artifacts</strong> -> <strong>Run Programs</strong><br>
+                        <strong>Google Chrome</strong> -> <strong>/img_Narcos-
+                        1.001/vol_vol7/Users/Steve/AppData/Local/Google/Chrome/User
+                        Data/Default/History</strong><br>
+                        <strong>Microsoft Edge</strong> -> <strong>/img_Narcos-
+                        1.001/vol_vol7/Users/Steve/AppData/Local/Packages/Microsoft.MicrosoftEdge_8wek
+                        zyb3d8bbwe/AC/MicrosoftEdge/History</strong><br>
+                        <img src="../images/PR03/4a.png" alt="4a">
+                        </p></li>
+
+                        <li><p>¿Cuál es el hash MD5 del archivo History del perfil predeterminado de Chrome?<br>
+                        <strong>f3f979c6dee9fbb7cbdf5818aaa4b723</strong><br>
+                        <img src="../images/PR03/5.png" alt="5">
+                        </p></li>
+                    </ol>
+                    <h3>Documentos, imágenes y metadatos</h3>
+                    <ol class="repo" start="6">
+                        <li><p>¿Cuál es la ruta absoluta del archivo airport crystals.jpg?<br>
+                        <strong>C:\User\Steve\Documents\Misc\airport crystals.jpg</strong> (Ruta Windows).<br>
+                        <strong>/img_Narcos-1.001/vol_vol7/Users/Steve/Documents/Misc/airport crystals.jpg</strong>
+                        (Ruta Auptopsy).<br>
+                        <img src="../images/PR03/6.png" alt="6">
+                        </p></li>
+
+                        <li><p>¿Cuál es la fecha y hora de creación de airport crystals.jpg (NZDT)?<br>
+                        <strong>31-01-2019 10:25:18 NZDT</strong><br>
+                        <img src="../images/PR03/7.png" alt="7">
+                        </p></li>
+
+                        <li><p>¿Cuál es el hash MD5 completo de dropoff.jpg?<br>
+                        <strong>7feb763bebe42c3a3464c9ee3bb1d3e8</strong><br>
+                        <img src="../images/PR03/8.png" alt="8">
+                        </p></li>
+
+                        <li><p>¿Cuál es la fecha y hora de última modificación de dropoff.jpg (NZDT)?<br>
+                        <strong>02-02-2019 14:06:06 NZDT</strong><br>
+                        <img src="../images/PR03/9.png" alt="9">
+                        </p></li>
+                        
+                        <li><p>¿Cuál es el nombre exacto y la ruta del archivo de imagen relacionado con
+                        reservaciones de vuelo en Documents\Misc?<br>
+                        <strong>flightbookings.PNG</strong><br>
+                        <strong>C:\User\Steve\Documents\Misc\flightbookings.PNG</strong> (Ruta Windows).<br>
+                        <strong>/img_Narcos-1.001/vol_vol7/Users/Steve/Documents/Misc/flightbookings.PNG</strong>
+                        (Ruta Auptopsy).<br>
+                        <img src="../images/PR03/10.png" alt="10">
+                        </p></li>
+
+                        <li><p>¿Cuál es el hash MD5 del archivo Method run.jpg?<br>
+                        <strong>69b225bc0ef5a0c003f1e2a6646aaf92</strong><br>
+                        <img src="../images/PR03/11.png" alt="11">
+                        
+                        </p></li>
+                    </ol>
+                    <h3>Programas y otros artefactos</h3>
+                    <ol class="repo" start="12">
+                        <li><p>¿Cuál es el hash MD5 completo de BNE.png?<br>
+                        <strong>dffa98bdd7371d1806adb09db27ba283</strong><br>
+                        <img src="../images/PR03/12.png" alt="12">
+                        </p></li>
+
+                        <li><p>¿Cuál es el nombre, ruta y MD5 del instalador de una herramienta de esteganografía
+                        en Downloads?<br>
+                        <strong>Image Steganography 1.5.2 Setup.exe</strong><br>
+                        <strong>C:\Users\Steve\Downloads\Image Steganography 1.5.2 Setup.exe</strong> (Ruta
+                        Windows).<br>
+                        <strong>/img_Narcos-1.001/vol_vol7/Users/Steve/Downloads/Image Steganography
+                        1.5.2 Setup.exe</strong> (Ruta Auptopsy).<br>
+                        <strong>MD5: c9b7c382dea6d7f45ae1bf437860cb69</strong><br>
+                        <img src="../images/PR03/13.png" alt="13">
+                        </p></li>
+
+                        <li><p>¿Cuál es el nombre y la ruta del instalador de una herramienta de cifrado encontrado
+                        en Downloads?<br>
+                        <strong>TrueCrypt Setup 7.1a.exe</strong><br>
+                        <strong>/img_Narcos-1.001/vol_vol7/Users/Steve/Downloads/TrueCrypt Setup 7.1a.exe</strong>
+                        (Ruta Auptopsy).<br>
+                        <strong>C:\Users\Steve\Downloads\ TrueCrypt Setup 7.1a.exe (Ruta Windows).</strong><br>
+                        <img src="../images/PR03/14.png" alt="14">
+                        </p></li>
+                        <li><p>¿Cuáles son las rutas de la caché de Discord y de ActivitiesCache.db utilizada por
+                        Windows Timeline?<br>
+                        Discord cache
+                        C:\Users\yamie\AppData\Roaming\Discord\Cache (Ruta Windows).
+                        /img_Narcos-1.001/vol_vol7/Users/Steve/AppData/Roaming/Discord/Cache
+                        (Ruta Auptopsy).
+                        C:\Users\yamie\AppData\Roaming\Discord\GPUCache (Ruta Windows).
+                        /img_Narcos-
+                        1.001/vol_vol7/Users/Steve/AppData/Roaming/Discord/GPUCache (Ruta
+                        Auptopsy).
+                        ActivitiesCache.db
+                        C:\Users\yamie\AppData\
+                        Local\ConnectedDevicesPlatform\2418c0082017486a\ActivitiesCache.db (Ruta
+                        Windows).
+                        /img_Narcos-
+                        1.001/vol_vol7/Users/Steve/AppData/Local/ConnectedDevicesPlatform/2418c0
+                        082017486a/ActivitiesCache.db (Ruta Auptopsy).
+                        <img src="../images/PR03/15.png" alt="15"><br>
+                        <img src="../images/PR03/16.png" alt="16">
+                        </p></li>
+                    </ol>
+                    <h2>Parte II. Investigación, interpretación y análisis del caso</h2>
+                    <p>En esta segunda parte no bastará identificar archivos. Fundamenta cada respuesta en indicios
+                    localizados en Narcos-1. Señala expresamente lo observado, la interpretación que propones y
+                    aquello que no puede confirmarse con la evidencia disponible. Registra fechas con zona horaria
+                    y evita afirmar que una descarga equivale a una ejecución.</p>
+                    <ol class="repo" start="16">
+                        <li><p>Examina flightbookings, BNE.png y dropoff.jpg. ¿Qué coincidencias sobre lugares,
+                        desplazamientos o logística identificas?</p></li>
+                        <li><p>Contrasta airport crystals.jpg y Method run.jpg con un registro de actividad del equipo.
+                        ¿Qué interpretación sobre su finalidad puede sostenerse?</p></li>
+                        <li><p>¿Qué evidencia permite afirmar que Discord estuvo presente o fue utilizado en el
+                        equipo? ¿Qué no puede concluirse sobre conversaciones, interlocutores o autoría sin
+                        recuperar mensajes verificables?</p></li>
+                        <li><p>Analiza los indicios de herramientas de esteganografía y cifrado. Diferencia descarga,
+                        instalación, ejecución y uso efectivo; explica qué artefactos respaldan cada nivel.</p></li>
+                        <li><p>Formula una hipótesis sobre la relación del equipo con los hechos investigados y una
+                        explicación alternativa. Sustenta el análisis con cuatro hallazgos y señala dos
+                        evidencias adicionales necesarias.</p></li>
+                    </ol>
+                    
+                    <div class="activity-links">
+                    <a href="../Documentos/Amaya Saucedo Marco Antonio-ACT17.pdf" target="_blank"><i class="fas fa-link"></i>PDF</a>
+                        </div>
+                </div>
+            </div>
+        </section>
+    </main>
+     <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 Marco Antonio Amaya - UPSLP - Todos los derechos reservados</p>
+            <div class="footer-links">
+                        <a href="https://github.com/yamidra" target="_blank"><i class="fab fa-github"></i></a>
+                    </div>
+        </div>
+    </footer>
+</body>
+</html>
